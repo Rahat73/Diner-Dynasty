@@ -1,9 +1,26 @@
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
+import router from "./Routes/Routes";
+import { AnimatePresence } from "framer-motion";
+import Welcome from "./Pages/Welcome/Welcome";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [showWelcome, setShowWelcome] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setShowWelcome(false);
+    }, 4000);
+  }, []);
+
   return (
     <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <div className="max-w-screen-2xl mx-auto">
+        <Welcome showWelcome={showWelcome}></Welcome>
+        <AnimatePresence>
+          <RouterProvider router={router} />
+        </AnimatePresence>
+      </div>
     </>
   );
 }

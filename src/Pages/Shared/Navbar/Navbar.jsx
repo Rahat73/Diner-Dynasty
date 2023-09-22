@@ -1,6 +1,19 @@
+import { useMotionValueEvent, useScroll } from "framer-motion";
 import logo from "../../../assets/logo.png";
+import { useState } from "react";
 
 const Navbar = () => {
+  const [navbarChange, setNavbarChange] = useState(false);
+  const { scrollY } = useScroll();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    if (latest >= 100) {
+      setNavbarChange(true);
+    } else {
+      setNavbarChange(false);
+    }
+  });
+
   const navbarItems = (
     <>
       <li>
@@ -13,7 +26,13 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-slate-800 bg-opacity-70 sticky top-0 z-10 py-0">
+    <div
+      className={`navbar bg-red-800 sticky top-0 z-10 py-0 font-semibold text-neutral-content ${
+        (navbarChange &&
+          `bg-red-950 bg-opacity-70 bg-clip-padding backdrop-filter backdrop-blur-sm`) ||
+        ``
+      }`}
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
