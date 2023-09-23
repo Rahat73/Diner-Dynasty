@@ -1,9 +1,11 @@
 import Banner from "../Banner/Banner";
+import CategorySlider from "../CategorySlider/CategorySlider";
 
 const Home = () => {
   return (
-    <div className="min-h-screen">
+    <div>
       <Banner></Banner>
+      <CategorySlider></CategorySlider>
     </div>
   );
 };
