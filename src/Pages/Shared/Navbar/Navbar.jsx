@@ -1,11 +1,14 @@
 import { useMotionValueEvent, useScroll } from "framer-motion";
 import logo from "../../../assets/logo.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { DarkModeSwitch } from "react-toggle-dark-mode";
+import { themeChange } from "theme-change";
 
 const Navbar = () => {
   const [navbarChange, setNavbarChange] = useState(false);
   const { scrollY } = useScroll();
 
+  //Checking scolled position to determine whether to change navbar
   useMotionValueEvent(scrollY, "change", (latest) => {
     if (latest >= 100) {
       setNavbarChange(true);
@@ -13,6 +16,27 @@ const Navbar = () => {
       setNavbarChange(false);
     }
   });
+
+  ///////////////////////////// Theme Toggle ////////////////////////////
+  const [isDarkMode, setDarkMode] = useState(() => {
+    const storedTheme = localStorage.getItem("theme");
+    return storedTheme === "luxury" ? true : false;
+  });
+
+  const toggleDarkMode = () => {
+    setDarkMode(!isDarkMode); ///////Changes it's theme
+    if (isDarkMode) {
+      //If it's already dark then change to light
+      localStorage.setItem("theme", "light");
+    } else {
+      localStorage.setItem("theme", "luxury");
+    }
+  };
+  useEffect(() => {
+    themeChange(false);
+    // 👆 false parameter is required for react project
+  }, [isDarkMode]);
+  ///////////////////////////// Theme Toggle ////////////////////////////
 
   const navbarItems = (
     <>
@@ -66,7 +90,12 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navbarItems}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <DarkModeSwitch
+          checked={isDarkMode}
+          onChange={toggleDarkMode}
+          size={35}
+        />
+        <a className="btn mx-3">Button</a>
       </div>
     </div>
   );

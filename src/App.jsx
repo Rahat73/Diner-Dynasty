@@ -6,12 +6,14 @@ import Welcome from "./Pages/Welcome/Welcome";
 import { useEffect, useState } from "react";
 
 function App() {
+  ///////////////////////////// Welcome Screen Trigger ////////////////////////////
   const [showWelcome, setShowWelcome] = useState(true);
   useEffect(() => {
     setTimeout(() => {
       setShowWelcome(false);
     }, 4000);
   }, []);
+  ///////////////////////////// Welcome Screen Trigger ////////////////////////////
 
   return (
     <>
