@@ -3,7 +3,7 @@ import banner from "../../../assets/DescriptionBanner/chef-service.jpg";
 const DescriptionBanner = () => {
   return (
     <div
-      className="hero w-9/12 mx-auto my-16"
+      className="hero w-9/12 mx-auto my-40 bg-fixed bg-no-repeat"
       style={{
         backgroundImage: `url(${banner})`,
       }}

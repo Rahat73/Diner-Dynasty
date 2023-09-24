@@ -1,0 +1,4 @@
+.featured-container {
+  background-image: url("../../../assets//Featured/featured.jpg");
+  background-attachment: fixed;
+}

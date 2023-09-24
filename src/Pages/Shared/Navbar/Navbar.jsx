@@ -51,7 +51,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`navbar bg-red-800 sticky top-0 z-10 py-0 font-semibold text-neutral-content ${
+      className={`navbar bg-red-700 sticky top-0 z-10 py-0 font-semibold text-neutral-content ${
         (navbarChange &&
           `bg-red-950 bg-opacity-70 bg-clip-padding backdrop-filter backdrop-blur-sm`) ||
         ``

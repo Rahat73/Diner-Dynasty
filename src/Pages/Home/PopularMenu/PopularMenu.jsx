@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import MenuItem from "../../Shared/MenuItem/MenuItem";
+import MenuItem from "../../../Components/MenuItem";
 import SectionHeader from "../../../Components/SectionHeader";
+import Button from "../../../Components/Button";
 
 const PopularMenu = () => {
   const [popularItems, setPopularItems] = useState([]);
@@ -16,7 +17,7 @@ const PopularMenu = () => {
       });
   }, []);
   return (
-    <div className="w-9/12 mx-auto my-16">
+    <div className="w-9/12 mx-auto my-40">
       <SectionHeader
         subHeading={"Check it out"}
         heading={"From Our Menu"}
@@ -26,7 +27,9 @@ const PopularMenu = () => {
           <MenuItem key={item._id} item={item}></MenuItem>
         ))}
       </div>
-      <button>View More</button>
+      <Button className={"my-10 flex justify-center mx-auto"}>
+        View Full Menu
+      </Button>
     </div>
   );
 };

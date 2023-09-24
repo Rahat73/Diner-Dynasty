@@ -13,7 +13,7 @@ const Footer = () => {
             <p>Sat-Sun: 10:00-23:00</p>
           </div>
         </div>
-        <div className="bg-orange-500 md:flex justify-start md:px-40 py-5">
+        <div className="bg-amber-600 md:flex justify-start md:px-40 py-5">
           <div className="my-8">
             <h1 className="text-lg font-semibold mb-3">FOLLOW US</h1>
             <p>Join Us on Social Media</p>

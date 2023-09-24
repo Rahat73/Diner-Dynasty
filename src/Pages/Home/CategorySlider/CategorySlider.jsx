@@ -12,79 +12,81 @@ import SectionHeader from "../../../Components/SectionHeader";
 
 const CategorySlider = () => {
   return (
-    <div className="w-9/12 mx-auto my-16">
+    <div className="w-9/12 mx-auto my-40">
       <SectionHeader
         subHeading={"From 11:00am to 10:00pm"}
         heading={"Order Online"}
       ></SectionHeader>
-      <Swiper
-        slidesPerView={1}
-        spaceBetween={10}
-        pagination={{
-          clickable: true,
-        }}
-        breakpoints={{
-          "@0.00": {
-            slidesPerView: 1,
-            spaceBetween: 10,
-          },
-          "@0.75": {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          "@1.00": {
-            slidesPerView: 3,
-            spaceBetween: 40,
-          },
-          "@1.50": {
-            slidesPerView: 4,
-            spaceBetween: 50,
-          },
-        }}
-        modules={[Pagination]}
-        className="mySwiper"
-      >
-        <SwiperSlide>
-          <div className="relative">
-            <img src={slide1} alt="" />
-            <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
-              Salads
-            </h1>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative">
-            <img src={slide2} alt="" />
-            <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
-              Pizzas
-            </h1>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative">
-            <img src={slide3} alt="" />
-            <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
-              Soups
-            </h1>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative">
-            <img src={slide4} alt="" />
-            <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
-              Deserts
-            </h1>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative">
-            <img src={slide5} alt="" />
-            <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
-              Salads
-            </h1>
-          </div>
-        </SwiperSlide>
-      </Swiper>
+      <div className="w-3/4 mx-auto sm:w-full">
+        <Swiper
+          slidesPerView={1}
+          spaceBetween={10}
+          pagination={{
+            clickable: true,
+          }}
+          breakpoints={{
+            "@0.00": {
+              slidesPerView: 1,
+              spaceBetween: 10,
+            },
+            "@0.75": {
+              slidesPerView: 2,
+              spaceBetween: 20,
+            },
+            "@1.00": {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+            "@1.50": {
+              slidesPerView: 4,
+              spaceBetween: 50,
+            },
+          }}
+          modules={[Pagination]}
+          className="mySwiper"
+        >
+          <SwiperSlide>
+            <div className="relative">
+              <img className="w-full" src={slide1} alt="" />
+              <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
+                Salads
+              </h1>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="relative">
+              <img className="w-full" src={slide2} alt="" />
+              <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
+                Pizzas
+              </h1>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="relative">
+              <img className="w-full" src={slide3} alt="" />
+              <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
+                Soups
+              </h1>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="relative">
+              <img className="w-full" src={slide4} alt="" />
+              <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
+                Deserts
+              </h1>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide>
+            <div className="relative">
+              <img className="w-full" src={slide5} alt="" />
+              <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
+                Salads
+              </h1>
+            </div>
+          </SwiperSlide>
+        </Swiper>
+      </div>
     </div>
   );
 };

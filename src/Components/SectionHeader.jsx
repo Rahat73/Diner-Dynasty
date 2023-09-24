@@ -1,7 +1,7 @@
 const SectionHeader = ({ subHeading, heading }) => {
   return (
     <div className="md:w-1/2 mx-auto">
-      <h1 className="italic text-center font-semibold text-amber-400">
+      <h1 className="italic text-center font-semibold text-amber-500">
         --- {subHeading} ---
       </h1>
 
