@@ -8,19 +8,15 @@ import slide2 from "../../../assets/CategorySlider/slide2.jpg";
 import slide3 from "../../../assets/CategorySlider/slide3.jpg";
 import slide4 from "../../../assets/CategorySlider/slide4.jpg";
 import slide5 from "../../../assets/CategorySlider/slide5.jpg";
+import SectionHeader from "../../../Components/SectionHeader";
 
 const CategorySlider = () => {
   return (
     <div className="w-9/12 mx-auto my-16">
-      <div className="w-1/2 mx-auto">
-        <h1 className="italic text-center font-semibold text-amber-400">
-          --- From 11:00am to 10:00pm ---
-        </h1>
-
-        <h1 className="text-3xl font-semibold text-center py-3 border-y-4 mb-5">
-          Order Online
-        </h1>
-      </div>
+      <SectionHeader
+        subHeading={"From 11:00am to 10:00pm"}
+        heading={"Order Online"}
+      ></SectionHeader>
       <Swiper
         slidesPerView={1}
         spaceBetween={10}

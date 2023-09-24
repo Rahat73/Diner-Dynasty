@@ -10,7 +10,7 @@ const DescriptionBanner = () => {
     >
       {/* <div className="hero-overlay bg-opacity-60"></div> */}
       <div className="hero-content text-center">
-        <div className="bg-base-100 p-5 md:p-16 md:m-16">
+        <div className="bg-base-200 p-5 md:p-16 md:m-16">
           <h1 className="mb-5 text-5xl font-bold">Diner Dynasty</h1>
           <p className="mb-5">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda

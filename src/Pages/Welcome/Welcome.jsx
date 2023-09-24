@@ -44,23 +44,25 @@ const contentVariants = {
   },
 };
 
-const svgVariants = {
-  hidden: {
-    x: "100vw",
-  },
-  visible: {
-    x: 0,
-    transition: { duration: 1 },
-  },
-};
+// const svgVariants = {
+//   hidden: {
+//     x: "100vw",
+//   },
+//   visible: {
+//     x: 0,
+//     transition: { duration: 1 },
+//   },
+// };
 
 const pathVariants = {
   hidden: {
     pathLength: 0,
+    fill: "rgba(197,158,93,0)",
   },
   visible: {
     pathLength: 1,
-    transition: { delay: 1.5, duration: 3 },
+    fill: "rgba(197,158,93,1)",
+    transition: { delay: 1, duration: 3.5 },
   },
 };
 
@@ -90,13 +92,13 @@ const Welcome = ({ showWelcome }) => {
               </h1>
               <motion.svg
                 className="hidden md:block"
-                variants={svgVariants}
+                // variants={svgVariants}
                 width="550"
                 // height="1000"
                 viewBox="0 0 550 50"
                 stroke="#c59e5d"
                 strokeWidth="4"
-                fill="#c59e5d"
+                // fill="#c59e5d"
                 vectorEffect="non-scaling-stroke"
               >
                 <motion.path variants={pathVariants} d={SVGPathD1} />
