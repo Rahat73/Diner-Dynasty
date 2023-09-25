@@ -3,19 +3,31 @@ import logo from "../../../assets/logo.png";
 import { useEffect, useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { themeChange } from "theme-change";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
+  ///////////////////////////// NavbarChange ////////////////////////////
   const [navbarChange, setNavbarChange] = useState(false);
+  const [navbarHide, setNavbarHide] = useState(false);
+  const [prevScroll, setPrevScroll] = useState();
   const { scrollY } = useScroll();
 
   //Checking scolled position to determine whether to change navbar
   useMotionValueEvent(scrollY, "change", (latest) => {
-    if (latest >= 100) {
+    // console.log(`prev:${prevScroll}, latest:${latest}`);
+    if (latest > 100) {
       setNavbarChange(true);
     } else {
       setNavbarChange(false);
     }
+    if (latest > 600 && prevScroll < latest) {
+      setNavbarHide(true);
+    } else {
+      setNavbarHide(false);
+    }
+    setPrevScroll(latest);
   });
+  ///////////////////////////// NavbarChange ////////////////////////////
 
   ///////////////////////////// Theme Toggle ////////////////////////////
   const [isDarkMode, setDarkMode] = useState(() => {
@@ -41,10 +53,10 @@ const Navbar = () => {
   const navbarItems = (
     <>
       <li>
-        <a>Item 1</a>
+        <Link to={"/"}>Home</Link>
       </li>
       <li>
-        <a>Item 3</a>
+        <Link to={"/menu"}>Our Menu</Link>
       </li>
     </>
   );
@@ -52,10 +64,9 @@ const Navbar = () => {
   return (
     <div
       className={`navbar bg-red-700 sticky top-0 z-10 py-0 font-semibold text-neutral-content ${
-        (navbarChange &&
-          `bg-red-950 bg-opacity-70 bg-clip-padding backdrop-filter backdrop-blur-sm`) ||
-        ``
-      }`}
+        navbarChange &&
+        `bg-red-950 bg-opacity-70 bg-clip-padding backdrop-filter backdrop-blur-sm`
+      } ${navbarHide && `opacity-0`}`}
     >
       <div className="navbar-start">
         <div className="dropdown">

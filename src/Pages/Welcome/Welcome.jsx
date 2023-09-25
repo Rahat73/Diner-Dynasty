@@ -40,7 +40,7 @@ const contentVariants = {
   },
   visible: {
     opacity: 1,
-    transition: { duration: 2 },
+    transition: { delay: 0.5, duration: 3 },
   },
 };
 
@@ -62,7 +62,7 @@ const pathVariants = {
   visible: {
     pathLength: 1,
     fill: "rgba(197,158,93,1)",
-    transition: { delay: 1, duration: 3.5 },
+    transition: { delay: 1.25, duration: 3.5 },
   },
 };
 
