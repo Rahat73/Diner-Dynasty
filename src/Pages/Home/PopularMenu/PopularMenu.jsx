@@ -1,21 +1,12 @@
-import { useEffect, useState } from "react";
+import useMenu from "../../../hooks/useMenu";
 import MenuItem from "../../../Components/MenuItem";
 import SectionHeader from "../../../Components/SectionHeader";
 import Button from "../../../Components/Button";
 
 const PopularMenu = () => {
-  const [popularItems, setPopularItems] = useState([]);
+  const [menu] = useMenu();
+  const popularItems = menu.filter((item) => item.category === "popular");
 
-  useEffect(() => {
-    fetch("menu.json")
-      .then((res) => res.json())
-      .then((items) => {
-        const loadPopularItems = items.filter(
-          (item) => item.category === "popular"
-        );
-        setPopularItems(loadPopularItems);
-      });
-  }, []);
   return (
     <div className="w-9/12 mx-auto my-40">
       <SectionHeader

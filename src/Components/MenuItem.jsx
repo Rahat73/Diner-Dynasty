@@ -8,11 +8,11 @@ const MenuItem = ({ item }) => {
         <div className="relative flex h-full transform items-end border-e-2 border-b-2 border-current bg-base-200 transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className="p-4 px-10 w-full flex-col sm:flex-row lg:flex justify-between items-center transition-opacity group-hover:absolute group-hover:opacity-0 ">
             <img
-              className="w-32 sm:w-40 lg:w-44 rounded-e-full rounded-b-full "
+              className="w-28 sm:w-40 lg:w-44 rounded-e-full rounded-b-full "
               src={image}
               alt=""
             />
-            <h2 className="mt-4 text-xl font-medium sm:text-2xl text-start">
+            <h2 className="mx-4 text-end text-xl font-medium sm:text-2xl">
               {name}
             </h2>
           </div>

@@ -1,9 +1,9 @@
 import { useMotionValueEvent, useScroll } from "framer-motion";
-import logo from "../../../assets/logo.png";
 import { useEffect, useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { themeChange } from "theme-change";
-import { Link } from "react-router-dom";
+import ActiveLink from "../../../Components/ActiveLink";
+import logo from "../../../assets/logo.png";
 
 const Navbar = () => {
   ///////////////////////////// NavbarChange ////////////////////////////
@@ -53,10 +53,10 @@ const Navbar = () => {
   const navbarItems = (
     <>
       <li>
-        <Link to={"/"}>Home</Link>
+        <ActiveLink to={"/"}>Home</ActiveLink>
       </li>
       <li>
-        <Link to={"/menu"}>Our Menu</Link>
+        <ActiveLink to={"/menu"}>Our Menu</ActiveLink>
       </li>
     </>
   );
@@ -98,7 +98,7 @@ const Navbar = () => {
         </a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">{navbarItems}</ul>
+        <ul className=" menu-horizontal space-x-5 px-1">{navbarItems}</ul>
       </div>
       <div className="navbar-end">
         <DarkModeSwitch
