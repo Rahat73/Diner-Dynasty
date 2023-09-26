@@ -58,6 +58,9 @@ const Navbar = () => {
       <li>
         <ActiveLink to={"/menu"}>Our Menu</ActiveLink>
       </li>
+      <li>
+        <ActiveLink to={"/order"}>Order</ActiveLink>
+      </li>
     </>
   );
 
