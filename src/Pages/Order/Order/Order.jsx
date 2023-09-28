@@ -8,7 +8,8 @@ import orderImg from "../../../assets/shop/banner2.jpg";
 // import "./Order.css";
 import "react-tabs/style/react-tabs.css";
 import OrderCategory from "../OrderCategory/OrderCategory";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 const Order = () => {
   useEffect(() => {
@@ -16,21 +17,27 @@ const Order = () => {
   });
 
   const [menu] = useMenu();
-  //   const offered = menu.filter((item) => item.category === "offered");
   const salad = menu.filter((item) => item.category === "salad");
   const soup = menu.filter((item) => item.category === "soup");
   const pizza = menu.filter((item) => item.category === "pizza");
   const dessert = menu.filter((item) => item.category === "dessert");
+  const drinks = menu.filter((item) => item.category === "drinks");
   salad.key = "salad";
   soup.key = "soup";
   pizza.key = "pizza";
   dessert.key = "dessert";
-  const categories = [salad, soup, pizza, dessert];
+  drinks.key = "drinks";
+  const categories = [salad, soup, pizza, dessert, drinks];
+
+  const categoriesIndex = ["salad", "soup", "pizza", "dessert", "drinks"];
+  const { category } = useParams();
+  const initialIndex = categoriesIndex.indexOf(category);
+  const [tabIndex, setTabIndex] = useState(initialIndex);
 
   return (
     <>
       <Helmet>
-        <title>Diner Dynasty | Menu</title>
+        <title>Diner Dynasty | Order</title>
       </Helmet>
       <motion.div
         variants={orderVariants}
@@ -46,7 +53,10 @@ const Order = () => {
           }
         ></Cover>
         <div className="w-9/12 mx-auto my-10">
-          <Tabs>
+          <Tabs
+            selectedIndex={tabIndex}
+            onSelect={(index) => setTabIndex(index)}
+          >
             <TabList>
               {categories.map((category) => (
                 <Tab key={category.key}>

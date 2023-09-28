@@ -17,7 +17,7 @@ const Home = () => {
     window.scrollTo(0, 0);
   });
   return (
-    <>
+    <div className="overflow-hidden">
       <Helmet>
         <title>Diner Dynasty | Home</title>
       </Helmet>
@@ -36,7 +36,7 @@ const Home = () => {
         <Featured></Featured>
         <Testimonials></Testimonials>
       </motion.div>
-    </>
+    </div>
   );
 };
 

@@ -1,8 +1,9 @@
+import { Link } from "react-router-dom";
 import Button from "../../../Components/Button";
 import MenuItem from "../../../Components/MenuItem";
 import Cover from "../../Shared/Cover/Cover";
 
-const MenuCategory = ({ items, heading, subHeading, img }) => {
+const MenuCategory = ({ items, heading, subHeading, img, category }) => {
   return (
     <>
       {heading && (
@@ -14,9 +15,11 @@ const MenuCategory = ({ items, heading, subHeading, img }) => {
             <MenuItem key={item._id} item={item}></MenuItem>
           ))}
         </div>
-        <Button className={"my-10 flex justify-center mx-auto"}>
-          Order Your Favourite Food
-        </Button>
+        <Link to={`/order/${category}`}>
+          <Button className={"my-10 flex justify-center mx-auto"}>
+            Order Your Favourite Food
+          </Button>
+        </Link>
       </div>
     </>
   );

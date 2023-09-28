@@ -45,7 +45,7 @@ const Menu = () => {
             heading={"Today's offer"}
             subHeading={"Don't miss"}
           ></SectionHeader>
-          <MenuCategory items={offered}></MenuCategory>
+          <MenuCategory items={offered} category={"salad"}></MenuCategory>
         </div>
         {/* -------------------SALAD---------------- */}
         <div className="my-20">
@@ -56,6 +56,7 @@ const Menu = () => {
               "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos tenetur vel ea ullam cupiditate eum earum eius incidunt ratione repellat. Earum, laboriosam corporis sequi laborum consequatur eveniet in quos omnis."
             }
             img={saladImg}
+            category={"salad"}
           ></MenuCategory>
         </div>
         {/* -------------------SOUP---------------- */}
@@ -67,6 +68,7 @@ const Menu = () => {
               "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos tenetur vel ea ullam cupiditate eum earum eius incidunt ratione repellat. Earum, laboriosam corporis sequi laborum consequatur eveniet in quos omnis."
             }
             img={soupImg}
+            category={"soup"}
           ></MenuCategory>
         </div>
         {/* -------------------PIZZAS---------------- */}
@@ -78,6 +80,7 @@ const Menu = () => {
               "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos tenetur vel ea ullam cupiditate eum earum eius incidunt ratione repellat. Earum, laboriosam corporis sequi laborum consequatur eveniet in quos omnis."
             }
             img={pizzaImg}
+            category={"pizza"}
           ></MenuCategory>
         </div>
         {/* -------------------DESSERTS---------------- */}
@@ -89,6 +92,7 @@ const Menu = () => {
               "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos tenetur vel ea ullam cupiditate eum earum eius incidunt ratione repellat. Earum, laboriosam corporis sequi laborum consequatur eveniet in quos omnis."
             }
             img={dessertImg}
+            category={"desserts"}
           ></MenuCategory>
         </div>
       </motion.div>
