@@ -8,13 +8,13 @@ import orderImg from "../../../assets/shop/banner2.jpg";
 // import "./Order.css";
 import "react-tabs/style/react-tabs.css";
 import OrderCategory from "../OrderCategory/OrderCategory";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 
 const Order = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  });
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // });
 
   const [menu] = useMenu();
   const salad = menu.filter((item) => item.category === "salad");
