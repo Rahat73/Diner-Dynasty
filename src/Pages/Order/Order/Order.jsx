@@ -10,11 +10,12 @@ import "react-tabs/style/react-tabs.css";
 import OrderCategory from "../OrderCategory/OrderCategory";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
 
 const Order = () => {
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const [menu] = useMenu();
   const salad = menu.filter((item) => item.category === "salad");

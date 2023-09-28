@@ -8,11 +8,9 @@ import { useEffect, useState } from "react";
 function App() {
   ///////////////////////////// Welcome Screen Trigger ////////////////////////////
   const [showWelcome, setShowWelcome] = useState(true);
-  const [routerKey, setRouterKey] = useState(0);
   useEffect(() => {
     setTimeout(() => {
       setShowWelcome(false);
-      setRouterKey((prevKey) => prevKey + 1);
     }, 4000);
   }, []);
   ///////////////////////////// Welcome Screen Trigger ////////////////////////////
@@ -21,8 +19,8 @@ function App() {
     <>
       <div className="max-w-screen-2xl mx-auto">
         <Welcome showWelcome={showWelcome}></Welcome>
-        <AnimatePresence mode="wait">
-          <RouterProvider key={routerKey} router={router} />
+        <AnimatePresence>
+          <RouterProvider router={router} />
         </AnimatePresence>
       </div>
     </>

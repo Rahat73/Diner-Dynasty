@@ -15,7 +15,7 @@ import MenuCategory from "../MenuCategory/MenuCategory";
 const Menu = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
 
   const [menu] = useMenu();
   const offered = menu.filter((item) => item.category === "offered");
