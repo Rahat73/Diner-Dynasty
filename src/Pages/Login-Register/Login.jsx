@@ -1,9 +1,33 @@
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
 import { Link } from "react-router-dom";
-import loginImg from "../../assets/Login-Register/image-5.jpg";
 import { BiSolidDish } from "react-icons/bi";
+import { useEffect } from "react";
+import { useRef } from "react";
 import Input from "../../Components/Input";
+import loginImg from "../../assets/Login-Register/image-5.jpg";
+import { useState } from "react";
 
 const Login = () => {
+  const captchaRef = useRef(null);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
+  const handleValidateCaptcha = () => {
+    const userCaptchaValue = captchaRef.current.value;
+    if (validateCaptcha(userCaptchaValue)) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  };
+
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -14,7 +38,7 @@ const Login = () => {
   return (
     <div>
       <section className="bg-base-100">
-        <div className="lg:grid lg:grid-cols-12">
+        <div className="lg:grid lg:grid-cols-12 min-h-screen">
           <section className="relative flex h-32 items-end bg-black lg:col-span-5 lg:h-full xl:col-span-6">
             <img
               alt="Night"
@@ -77,24 +101,22 @@ const Login = () => {
                   <Input name={"Password"} type={"password"}></Input>
                 </div>
 
-                <div className="col-span-6">
-                  <p className="text-sm ">
-                    By creating an account, you agree to our
-                    <Link
-                      href="#"
-                      className="font-semibold text-amber-500 underline px-2"
-                    >
-                      terms and conditions
-                    </Link>
-                    .
-                  </p>
+                <div className="col-span-6 space-y-2">
+                  <LoadCanvasTemplate />
+                  <Input name={"Captcha"} reference={captchaRef}></Input>
+                  <button
+                    onClick={handleValidateCaptcha}
+                    className="btn btn-outline btn-xs"
+                  >
+                    Validate Captcha
+                  </button>
                 </div>
-
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                   <input
                     className="btn btn-outline text-xs"
                     type="submit"
                     value="Login"
+                    disabled={isDisabled}
                   />
 
                   <p className="mt-4 text-sm sm:mt-0">

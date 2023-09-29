@@ -18,7 +18,7 @@ const Register = () => {
   return (
     <div>
       <section className="bg-base-100">
-        <div className="lg:grid lg:grid-cols-12">
+        <div className="lg:grid lg:grid-cols-12 min-h-screen">
           <section className="relative flex h-32 items-end bg-black lg:col-span-5 lg:h-full xl:col-span-6">
             <img
               alt="Night"

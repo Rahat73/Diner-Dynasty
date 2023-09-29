@@ -1,4 +1,4 @@
-const Input = ({ name, type }) => {
+const Input = ({ name, type, reference }) => {
   return (
     <label
       htmlFor={name}
@@ -8,6 +8,7 @@ const Input = ({ name, type }) => {
         type={type || `text`}
         id={name}
         name={name}
+        ref={reference}
         className="peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
         placeholder={name}
         required
