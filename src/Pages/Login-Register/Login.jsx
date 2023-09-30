@@ -3,17 +3,23 @@ import {
   LoadCanvasTemplate,
   validateCaptcha,
 } from "react-simple-captcha";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BiSolidDish } from "react-icons/bi";
-import { useEffect } from "react";
-import { useRef } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
+import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../Providers/AuthProvider";
+import { toast } from "react-toastify";
 import Input from "../../Components/Input";
 import loginImg from "../../assets/Login-Register/image-5.jpg";
-import { useState } from "react";
 
 const Login = () => {
+  const { signIn } = useContext(AuthContext);
   const captchaRef = useRef(null);
   const [isDisabled, setIsDisabled] = useState(true);
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathName || "/";
 
   useEffect(() => {
     loadCaptchaEnginge(6);
@@ -33,10 +39,18 @@ const Login = () => {
     const form = event.target;
     const email = form.Email.value;
     const password = form.Password.value;
-    console.log(email, password);
+    signIn(email, password).then((userCredential) => {
+      const user = userCredential.user;
+      form.reset();
+      toast.info(`Welcome to Diner Dynasty ${user.displayName}`);
+      navigate(from, { replace: true });
+    });
   };
   return (
     <div>
+      <Helmet>
+        <title>Diner Dynasty | Login</title>
+      </Helmet>
       <section className="bg-base-100">
         <div className="lg:grid lg:grid-cols-12 min-h-screen">
           <section className="relative flex h-32 items-end bg-black lg:col-span-5 lg:h-full xl:col-span-6">
@@ -93,6 +107,9 @@ const Login = () => {
                 onSubmit={handleLogin}
                 className="mt-8 grid grid-cols-6 gap-6"
               >
+                <h2 className="text-2xl md:text-3xl font-bold col-span-6">
+                  Login
+                </h2>
                 <div className="col-span-6 ">
                   <Input name={"Email"} type={"email"}></Input>
                 </div>
@@ -104,12 +121,12 @@ const Login = () => {
                 <div className="col-span-6 space-y-2">
                   <LoadCanvasTemplate />
                   <Input name={"Captcha"} reference={captchaRef}></Input>
-                  <button
+                  <div
                     onClick={handleValidateCaptcha}
                     className="btn btn-outline btn-xs"
                   >
                     Validate Captcha
-                  </button>
+                  </div>
                 </div>
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                   <input

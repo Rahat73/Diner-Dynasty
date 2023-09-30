@@ -1,9 +1,10 @@
 import { RouterProvider } from "react-router-dom";
 import "./App.css";
 import router from "./Routes/Routes";
-import { AnimatePresence } from "framer-motion";
-import Welcome from "./Pages/Welcome/Welcome";
+import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import Welcome from "./Pages/Welcome/Welcome";
 
 function App() {
   ///////////////////////////// Welcome Screen Trigger ////////////////////////////
@@ -19,9 +20,19 @@ function App() {
     <>
       <div className="max-w-screen-2xl mx-auto">
         <Welcome showWelcome={showWelcome}></Welcome>
-        <AnimatePresence>
-          <RouterProvider router={router} />
-        </AnimatePresence>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+        <RouterProvider router={router} />
       </div>
     </>
   );

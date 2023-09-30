@@ -4,6 +4,9 @@ import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { themeChange } from "theme-change";
 import ActiveLink from "../../../Components/ActiveLink";
 import logo from "../../../assets/logo.png";
+import { useContext } from "react";
+import { AuthContext } from "../../../Providers/AuthProvider";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   ///////////////////////////// NavbarChange ////////////////////////////
@@ -50,6 +53,14 @@ const Navbar = () => {
   }, [isDarkMode]);
   ///////////////////////////// Theme Toggle ////////////////////////////
 
+  const { user, logOut } = useContext(AuthContext);
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error.message));
+  };
+
   const navbarItems = (
     <>
       <li>
@@ -60,9 +71,6 @@ const Navbar = () => {
       </li>
       <li>
         <ActiveLink to={"/order/salad"}>Order</ActiveLink>
-      </li>
-      <li>
-        <ActiveLink to={"/login"}>Login</ActiveLink>
       </li>
     </>
   );
@@ -112,7 +120,27 @@ const Navbar = () => {
           onChange={toggleDarkMode}
           size={35}
         />
-        <a className="btn mx-3">Button</a>
+        {user ? (
+          <>
+            <div
+              className="tooltip tooltip-bottom ml-4 flex"
+              data-tip={user.displayName}
+            >
+              <div className="avatar">
+                <div className="w-10 rounded-full">
+                  <img src={user.photoURL} />
+                </div>
+              </div>
+            </div>
+            <button onClick={handleLogOut} className="btn btn-ghost mx-1">
+              Log Out
+            </button>
+          </>
+        ) : (
+          <Link to={"/login"}>
+            <button className="btn btn-ghost mx-3">Log In</button>
+          </Link>
+        )}
       </div>
     </div>
   );

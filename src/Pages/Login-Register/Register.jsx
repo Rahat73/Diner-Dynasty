@@ -1,22 +1,60 @@
-import { Link } from "react-router-dom";
-import loginImg from "../../assets/Login-Register/image-5.jpg";
+import { Link, useNavigate } from "react-router-dom";
 import { BiSolidDish } from "react-icons/bi";
-import Input from "../../Components/Input";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+import { useForm } from "react-hook-form";
+import {
+  inputClassName,
+  labelClassName,
+  spanClassName,
+} from "../../Components/Input";
+import loginImg from "../../assets/Login-Register/image-5.jpg";
+import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+import { toast } from "react-toastify";
 
 const Register = () => {
-  const handleRegister = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const displayName = form.Username.value;
-    const email = form.Email.value;
-    const password = form.Password.value;
-    const confirmPassword = form.ConfirmPassword.value;
-    const photoURL = form.PhotoURL.value;
-    console.log(displayName, email, password, confirmPassword, photoURL);
+  const { createUser, updateUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitSuccessful },
+    reset,
+  } = useForm();
+
+  const onSubmit = (data) => {
+    if (data.password !== data.confirmPassword) {
+      toast.error("Passwords don't match");
+    } else {
+      createUser(data.email, data.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+          updateUser(data.name, data.photoURL)
+            .then(() => {
+              toast.success(`Account has been created successfully`);
+              navigate("/login");
+            })
+            .catch((error) => {
+              toast.error(error.message);
+            });
+        })
+        .catch((error) => toast.error(error.message));
+    }
   };
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
 
   return (
     <div>
+      <Helmet>
+        <title>Diner Dynasty | Register</title>
+      </Helmet>
       <section className="bg-base-100">
         <div className="lg:grid lg:grid-cols-12 min-h-screen">
           <section className="relative flex h-32 items-end bg-black lg:col-span-5 lg:h-full xl:col-span-6">
@@ -70,34 +108,102 @@ const Register = () => {
               </div>
 
               <form
-                onSubmit={handleRegister}
+                onSubmit={handleSubmit(onSubmit)}
                 className="mt-8 grid grid-cols-6 gap-6"
               >
+                <h2 className="text-2xl md:text-3xl font-bold col-span-6">
+                  Register
+                </h2>
                 <div className="col-span-6 sm:col-span-3">
-                  <Input name={"Username"}></Input>
+                  <label htmlFor="username" className={labelClassName}>
+                    <input
+                      type="text"
+                      id="username"
+                      className={inputClassName}
+                      placeholder="Username"
+                      required
+                      {...register("name")}
+                    />
+                    <span className={spanClassName}>Username</span>
+                  </label>
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
-                  <Input name={"Email"} type={"email"}></Input>
+                  <label htmlFor="email" className={labelClassName}>
+                    <input
+                      type="email"
+                      id="email"
+                      className={inputClassName}
+                      placeholder="Email"
+                      required
+                      {...register("email")}
+                    />
+                    <span className={spanClassName}>Email</span>
+                  </label>
                 </div>
 
                 <div className="col-span-6">
-                  <Input name={"Password"} type={"password"}></Input>
+                  <label htmlFor="password" className={labelClassName}>
+                    <input
+                      type="password"
+                      id="password"
+                      className={inputClassName}
+                      placeholder="Password"
+                      required
+                      {...register("password", {
+                        minLength: 6,
+                        pattern:
+                          /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/,
+                      })}
+                    />
+                    {errors.password?.type === "minLength" && (
+                      <p className="text-xs text-red-400 ml-3">
+                        Password must be of 6 characters
+                      </p>
+                    )}
+                    {errors.password?.type === "pattern" && (
+                      <p className="text-xs text-red-400">
+                        Password must have a uppercase, digit, lowercase &
+                        special character (!@#$&*)
+                      </p>
+                    )}
+                    <span className={spanClassName}>Password</span>
+                  </label>
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
-                  <Input name={"ConfirmPassword"}></Input>
+                  <label htmlFor="confirmPassword" className={labelClassName}>
+                    <input
+                      type="password"
+                      id="confirmPassword"
+                      className={inputClassName}
+                      placeholder="Confirm Password"
+                      required
+                      {...register("confirmPassword")}
+                    />
+                    <span className={spanClassName}>Confirm Password</span>
+                  </label>
                 </div>
 
                 <div className="col-span-6 sm:col-span-3">
-                  <Input name={"PhotoURL"}></Input>
+                  <label htmlFor="photoUrl" className={labelClassName}>
+                    <input
+                      type="text"
+                      id="photoUrl"
+                      className={inputClassName}
+                      placeholder="photoUrl"
+                      required
+                      {...register("photoURL")}
+                    />
+                    <span className={spanClassName}>photoUrl</span>
+                  </label>
                 </div>
 
                 <div className="col-span-6">
                   <p className="text-sm ">
                     By creating an account, you agree to our
                     <Link
-                      href="#"
+                      to={"/"}
                       className="font-semibold text-amber-500 underline px-2"
                     >
                       terms and conditions
