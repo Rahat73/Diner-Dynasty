@@ -9,12 +9,12 @@ import {
   spanClassName,
 } from "../../Components/Input";
 import loginImg from "../../assets/Login-Register/image-5.jpg";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 
 const Register = () => {
-  const { createUser, updateUser } = useContext(AuthContext);
+  const { createUser, updateUser, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
   const {
     register,
@@ -30,15 +30,15 @@ const Register = () => {
       createUser(data.email, data.password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          // console.log(user);
           updateUser(data.name, data.photoURL)
             .then(() => {
               toast.success(`Account has been created successfully`);
-              navigate("/login");
+              logOut()
+                .then(() => navigate("/login"))
+                .catch((error) => toast.error(error.message));
             })
-            .catch((error) => {
-              toast.error(error.message);
-            });
+            .catch((error) => toast.error(error.message));
         })
         .catch((error) => toast.error(error.message));
     }

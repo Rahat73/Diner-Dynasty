@@ -5,7 +5,7 @@ export const inputClassName =
 export const spanClassName =
   "pointer-events-none absolute start-2.5 top-0 -translate-y-1/2 bg-base-100 p-0.5 text-xs transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-0 peer-focus:text-xs";
 
-const Input = ({ name, type, reference }) => {
+const Input = ({ name, type, reference, defaultValue, disabled }) => {
   return (
     <label
       htmlFor={name}
@@ -18,6 +18,8 @@ const Input = ({ name, type, reference }) => {
         ref={reference}
         className="peer border-none bg-transparent placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0"
         placeholder={name}
+        defaultValue={defaultValue}
+        disabled={disabled}
         required
       />
 
