@@ -42,7 +42,12 @@ const Login = () => {
     signIn(email, password).then((userCredential) => {
       const user = userCredential.user;
       form.reset();
-      toast.info(`Welcome to Diner Dynasty ${user.displayName}`);
+      toast.info(
+        <p>
+          <span className="font-semibold">{user.displayName}</span>, Welcome to
+          Diner Dynasty
+        </p>
+      );
       navigate(from, { replace: true });
     });
   };

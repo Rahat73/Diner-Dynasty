@@ -7,6 +7,8 @@ import logo from "../../../assets/logo.png";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
+import { FaShoppingCart } from "react-icons/fa";
+import useCart from "../../../hooks/useCart";
 
 const Navbar = () => {
   ///////////////////////////// NavbarChange ////////////////////////////
@@ -78,6 +80,8 @@ const Navbar = () => {
     </>
   );
 
+  const [cart] = useCart();
+
   return (
     <div
       className={`navbar bg-red-700 sticky top-0 z-10 py-0 font-semibold text-neutral-content ${
@@ -125,6 +129,12 @@ const Navbar = () => {
         />
         {user ? (
           <>
+            <button className="btn btn-ghost ml-4">
+              <FaShoppingCart className="text-xl" />
+              <div className="badge badge-secondary">
+                {`+ ${cart?.length}` || +0}
+              </div>
+            </button>
             <div
               className="tooltip tooltip-bottom ml-4 flex"
               data-tip={user.displayName}

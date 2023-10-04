@@ -1,7 +1,61 @@
+import { useContext } from "react";
 import Button from "./Button";
+import { AuthContext } from "../Providers/AuthProvider";
+import { toast } from "react-toastify";
+import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import useCart from "../hooks/useCart";
 
 const MenuItemCard = ({ item }) => {
-  const { name, recipe, image, price } = item;
+  const { _id, name, recipe, image, price } = item;
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [, refetch] = useCart();
+
+  const handleItem = (item) => {
+    if (user && user.email) {
+      const cartItem = {
+        menuItemId: _id,
+        name,
+        image,
+        price,
+        userEmail: user.email,
+      };
+      fetch("http://localhost:5000/carts", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(cartItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.insertedId) {
+            toast.success(
+              <p>
+                <span className="font-semibold">{item.name}</span> added to cart
+              </p>
+            );
+            refetch();
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "Login First",
+        text: "Please login to add product to cart!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Login Now!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
+  };
   return (
     <>
       <div className="group relative block h-72 sm:h-80 lg:h-76">
@@ -17,7 +71,11 @@ const MenuItemCard = ({ item }) => {
             <h3 className="mt-4 text-xl font-medium sm:text-2xl">{name}</h3>
             <p className="mt-4 text-sm sm:text-base">{recipe}</p>
             <p className="mt-4 sm:text-xl text-amber-500 font-bold">${price}</p>
-            <Button className={"mt-4"}>Add to cart</Button>
+            <button onClick={() => handleItem(item)}>
+              <Button onclick className={"mt-4"}>
+                Add to cart
+              </Button>
+            </button>
           </div>
         </div>
       </div>
