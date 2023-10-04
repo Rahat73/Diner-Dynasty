@@ -129,12 +129,12 @@ const Navbar = () => {
         />
         {user ? (
           <>
-            <button className="btn btn-ghost ml-4">
+            <Link to={"dashBoard/myCart"} className="btn btn-ghost ml-4">
               <FaShoppingCart className="text-xl" />
               <div className="badge badge-secondary">
                 {`+ ${cart?.length}` || +0}
               </div>
-            </button>
+            </Link>
             <div
               className="tooltip tooltip-bottom ml-4 flex"
               data-tip={user.displayName}
