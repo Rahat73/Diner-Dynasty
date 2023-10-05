@@ -12,6 +12,7 @@ import loginImg from "../../assets/Login-Register/image-5.jpg";
 import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Register = () => {
   const { createUser, updateUser, logOut } = useContext(AuthContext);
@@ -28,15 +29,29 @@ const Register = () => {
       toast.error("Passwords don't match");
     } else {
       createUser(data.email, data.password)
-        .then((userCredential) => {
-          const user = userCredential.user;
-          // console.log(user);
+        .then(() => {
           updateUser(data.name, data.photoURL)
             .then(() => {
-              toast.success(`Account has been created successfully`);
-              logOut()
-                .then(() => navigate("/login"))
-                .catch((error) => toast.error(error.message));
+              const saveUser = {
+                userName: data.name,
+                userEmail: data.email,
+              };
+              fetch(`http://localhost:5000/users`, {
+                method: "POST",
+                headers: {
+                  "content-type": "application/json",
+                },
+                body: JSON.stringify(saveUser),
+              })
+                .then((res) => res.json())
+                .then((data) => {
+                  if (data.insertedId) {
+                    toast.success(`Account has been created successfully`);
+                    logOut()
+                      .then(() => navigate("/login"))
+                      .catch((error) => toast.error(error.message));
+                  }
+                });
             })
             .catch((error) => toast.error(error.message));
         })
@@ -231,6 +246,7 @@ const Register = () => {
                   </p>
                 </div>
               </form>
+              <SocialLogin></SocialLogin>
             </div>
           </main>
         </div>

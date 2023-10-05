@@ -11,6 +11,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { toast } from "react-toastify";
 import Input from "../../Components/Input";
 import loginImg from "../../assets/Login-Register/image-5.jpg";
+import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
@@ -153,6 +154,7 @@ const Login = () => {
                   </p>
                 </div>
               </form>
+              <SocialLogin></SocialLogin>
             </div>
           </main>
         </div>
