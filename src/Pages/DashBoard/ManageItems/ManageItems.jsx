@@ -1,16 +1,19 @@
-import { FaTrash } from "react-icons/fa";
-import Button from "../../Components/Button";
-import useCart from "../../hooks/useCart";
-import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import SectionHeader from "../../../Components/SectionHeader";
+import useMenu from "../../../hooks/useMenu";
+import { FaEdit, FaTrash } from "react-icons/fa";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const MyCart = () => {
-  const [cart, refetch] = useCart();
-  const total = cart.reduce((sum, item) => item.price + sum, 0);
+const ManageItems = () => {
+  const [menu, refetch] = useMenu();
+  const [axiosSecure] = useAxiosSecure();
 
+  const handleEditItem = (_id) => {};
   const handleRemoveItem = (id) => {
     Swal.fire({
       title: "Are you sure?",
+      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -18,41 +21,39 @@ const MyCart = () => {
       confirmButtonText: "Yes, remove it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/carts/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              refetch();
-              Swal.fire(
-                "Removed!",
-                "Item has been removed from the cart.",
-                "success"
-              );
-            }
-          });
+        axiosSecure.delete(`/menus/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire("Removed!", "Item has been removed.", "success");
+          } else {
+            Swal.fire({
+              icon: "error",
+              title: "Oops...",
+              text: "Can'remove special item!",
+              footer: "Try adding an item then remove",
+            });
+          }
+        });
       }
     });
   };
-
   return (
     <>
       <Helmet>
-        <title>Diner Dynasty | My Cart</title>
+        <title>Diner Dynasty | Manage Items</title>
       </Helmet>
-      <div className="bg-base-200 p-10 w-11/12 mx-auto my-10 border border-current">
+      <div className="mt-16 w-full">
+        <SectionHeader
+          heading={"Manage Items"}
+          subHeading={"Take Action"}
+        ></SectionHeader>
+      </div>
+      <div className="bg-base-200 p-10 w-11/12 max-h-[30rem] overflow-auto mx-auto border border-current">
         <div className="flex justify-evenly items-center">
-          <h1 className="text-2xl font-semibold">
-            Total Orders: {cart?.length}
-          </h1>
-          <h1 className="text-2xl font-semibold">Total Price: ${total}</h1>
-          <button>
-            <Button>Pay</Button>
-          </button>
+          <h1 className="text-2xl font-semibold">Total Items: {menu.length}</h1>
         </div>
         <div className="overflow-x-auto my-10">
-          {cart.length > 0 ? (
+          {menu.length > 0 ? (
             <table className="table">
               {/* head */}
               <thead>
@@ -60,12 +61,14 @@ const MyCart = () => {
                   <th>#</th>
                   <th></th>
                   <th>Item</th>
+                  <th>Category</th>
                   <th>Price</th>
+                  <th>Edit</th>
                   <th>Remove</th>
                 </tr>
               </thead>
               <tbody>
-                {cart.map((item, index) => (
+                {menu.map((item, index) => (
                   <tr key={item._id}>
                     <th>{index + 1}</th>
                     <td>
@@ -78,7 +81,16 @@ const MyCart = () => {
                       </div>
                     </td>
                     <td>{item.name}</td>
+                    <td>$ {item.category}</td>
                     <td>$ {item.price}</td>
+                    <th>
+                      <button
+                        onClick={() => handleEditItem(item)}
+                        className="btn btn-ghost btn-xs"
+                      >
+                        <FaEdit className="text-xl text-green-600" />
+                      </button>
+                    </th>
                     <th>
                       <button
                         onClick={() => handleRemoveItem(item._id)}
@@ -92,9 +104,7 @@ const MyCart = () => {
               </tbody>
             </table>
           ) : (
-            <div className="text-4xl text-center my-20">
-              No items in the cart
-            </div>
+            <div className="text-4xl text-center my-20">No items avilable</div>
           )}
         </div>
       </div>
@@ -102,4 +112,4 @@ const MyCart = () => {
   );
 };
 
-export default MyCart;
+export default ManageItems;

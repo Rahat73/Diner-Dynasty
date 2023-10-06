@@ -16,11 +16,11 @@ import {
 import { Outlet } from "react-router-dom";
 import ActiveLink from "../Components/ActiveLink";
 import useCart from "../hooks/useCart";
+import useAdmin from "../hooks/useAdmin";
 
 const DashBoard = () => {
   const [cart] = useCart();
-
-  const isAdmin = true;
+  const [isAdmin] = useAdmin();
 
   return (
     <div className="drawer lg:drawer-open">
@@ -51,8 +51,8 @@ const DashBoard = () => {
                 </ActiveLink>
               </li>
               <li>
-                <ActiveLink to={"/dashBoard/addItems"}>
-                  <FaUtensils className="text-lg" /> Add Items
+                <ActiveLink to={"/dashBoard/addItem"}>
+                  <FaUtensils className="text-lg" /> Add an Item
                 </ActiveLink>
               </li>
               <li>

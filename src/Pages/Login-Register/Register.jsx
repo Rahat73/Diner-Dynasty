@@ -203,7 +203,7 @@ const Register = () => {
                 <div className="col-span-6 sm:col-span-3">
                   <label htmlFor="photoUrl" className={labelClassName}>
                     <input
-                      type="text"
+                      type="url"
                       id="photoUrl"
                       className={inputClassName}
                       placeholder="photoUrl"
