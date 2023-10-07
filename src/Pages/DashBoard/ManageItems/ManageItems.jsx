@@ -9,7 +9,7 @@ const ManageItems = () => {
   const [menu, refetch] = useMenu();
   const [axiosSecure] = useAxiosSecure();
 
-  const handleEditItem = (_id) => {};
+  const handleEditItem = (_id) => {}; //TODO
   const handleRemoveItem = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -42,7 +42,7 @@ const ManageItems = () => {
       <Helmet>
         <title>Diner Dynasty | Manage Items</title>
       </Helmet>
-      <div className="mt-16 w-full">
+      <div className="w-full">
         <SectionHeader
           heading={"Manage Items"}
           subHeading={"Take Action"}

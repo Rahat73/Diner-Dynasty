@@ -3,6 +3,7 @@ import Button from "../../Components/Button";
 import useCart from "../../hooks/useCart";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -41,15 +42,15 @@ const MyCart = () => {
       <Helmet>
         <title>Diner Dynasty | My Cart</title>
       </Helmet>
-      <div className="bg-base-200 p-10 w-11/12 mx-auto my-10 border border-current">
+      <div className="bg-base-200 p-10 w-11/12 max-h-[30rem] overflow-auto mx-auto my-10 border border-current">
         <div className="flex justify-evenly items-center">
           <h1 className="text-2xl font-semibold">
             Total Orders: {cart?.length}
           </h1>
           <h1 className="text-2xl font-semibold">Total Price: ${total}</h1>
-          <button>
+          <Link to={"/dashBoard/payment"}>
             <Button>Pay</Button>
-          </button>
+          </Link>
         </div>
         <div className="overflow-x-auto my-10">
           {cart.length > 0 ? (
