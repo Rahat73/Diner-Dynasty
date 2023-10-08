@@ -9,6 +9,7 @@ import { AuthContext } from "../../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
 import { FaShoppingCart } from "react-icons/fa";
 import useCart from "../../../hooks/useCart";
+import useAdmin from "../../../hooks/useAdmin";
 
 const Navbar = () => {
   ///////////////////////////// NavbarChange ////////////////////////////
@@ -63,6 +64,8 @@ const Navbar = () => {
       .catch((error) => console.log(error.message));
   };
 
+  const [isAdmin] = useAdmin();
+
   const navbarItems = (
     <>
       <li>
@@ -76,6 +79,13 @@ const Navbar = () => {
       </li>
       <li>
         <ActiveLink to={"/contactUs"}>Contact Us</ActiveLink>
+      </li>
+      <li>
+        <ActiveLink
+          to={isAdmin ? "/dashBoard/adminHome" : "/dashBoard/userHome"}
+        >
+          Dashboard
+        </ActiveLink>
       </li>
     </>
   );

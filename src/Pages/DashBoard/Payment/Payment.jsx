@@ -22,7 +22,7 @@ const Payment = () => {
           subHeading={"Please Process"}
         ></SectionHeader>
       </div>
-      <div className="bg-base-200 p-10 w-11/12 max-h-[30rem] overflow-auto mx-auto border border-current">
+      <div className="bg-base-200 p-10 w-11/12 max-h-[30rem] my-10 overflow-auto mx-auto border border-current">
         <Elements stripe={stripePromise}>
           <CheckoutForm price={price} cart={cart} />
         </Elements>

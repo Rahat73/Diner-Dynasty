@@ -40,17 +40,19 @@ const Login = () => {
     const form = event.target;
     const email = form.Email.value;
     const password = form.Password.value;
-    signIn(email, password).then((userCredential) => {
-      const user = userCredential.user;
-      form.reset();
-      toast.info(
-        <p>
-          <span className="font-semibold">{user.displayName}</span>, Welcome to
-          Diner Dynasty
-        </p>
-      );
-      navigate(from, { replace: true });
-    });
+    signIn(email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        form.reset();
+        toast.info(
+          <p>
+            <span className="font-semibold">{user.displayName}</span>, Welcome
+            to Diner Dynasty
+          </p>
+        );
+        navigate(from, { replace: true });
+      })
+      .catch((error) => toast.error(error.message));
   };
   return (
     <div>
