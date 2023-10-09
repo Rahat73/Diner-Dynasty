@@ -56,7 +56,6 @@ const AddItem = () => {
         }
       });
   };
-  console.log(errors);
 
   return (
     <>
@@ -75,6 +74,9 @@ const AddItem = () => {
           <div className="form-control w-full col-span-12">
             <label className="label">
               <span className="label-text">Recipe Name*</span>
+              {errors.name?.type === "maxLength" && (
+                <p className="text-sm text-red-400 ml-3">Max Length is 30</p>
+              )}
             </label>
             <input
               type="text"
@@ -105,11 +107,22 @@ const AddItem = () => {
           <div className="form-control w-full col-span-6">
             <label className="label">
               <span className="label-text">Price*</span>
+              {errors.price?.type === "min" && (
+                <p className="text-xs text-red-400 ml-3">
+                  Price range is 1-100
+                </p>
+              )}
+              {errors.price?.type === "max" && (
+                <p className="text-xs text-red-400 ml-3">
+                  Price range is 1-100
+                </p>
+              )}
             </label>
             <input
               type="number"
               placeholder="$$"
               className="input input-bordered w-full"
+              step="0.1"
               required
               {...register("price", {
                 max: 1000,
@@ -120,6 +133,9 @@ const AddItem = () => {
           <div className="form-control w-full col-span-12">
             <label className="label">
               <span className="label-text">Recipe Details*</span>
+              {errors.recipe?.type === "maxLength" && (
+                <p className="text-xs text-red-400 ml-3">Max Length is 150</p>
+              )}
             </label>
             <textarea
               className="textarea textarea-bordered h-24"

@@ -4,12 +4,20 @@ import useMenu from "../../../hooks/useMenu";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import EditItem from "./EditItem";
+import { useState } from "react";
 
 const ManageItems = () => {
   const [menu, refetch] = useMenu();
   const [axiosSecure] = useAxiosSecure();
 
-  const handleEditItem = (_id) => {}; //TODO
+  const [selectedItem, setSelectedItem] = useState([]); // Store the selected item for editing
+
+  const handleEditItem = (item) => {
+    // Open the EditItem modal and set the selected item
+    document.getElementById("update_modal").showModal();
+    setSelectedItem(item);
+  };
   const handleRemoveItem = (id) => {
     Swal.fire({
       title: "Are you sure?",
@@ -48,6 +56,7 @@ const ManageItems = () => {
           subHeading={"Take Action"}
         ></SectionHeader>
       </div>
+      <EditItem item={selectedItem}></EditItem>
       <div className="bg-base-200 p-10 w-11/12 lg:max-h-[32rem] overflow-auto mx-auto border border-current">
         <div className="flex justify-evenly items-center">
           <h1 className="text-2xl font-semibold">Total Items: {menu.length}</h1>
