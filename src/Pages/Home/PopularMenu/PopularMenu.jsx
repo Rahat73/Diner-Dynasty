@@ -2,6 +2,7 @@ import useMenu from "../../../hooks/useMenu";
 import MenuItem from "../../../Components/MenuItem";
 import SectionHeader from "../../../Components/SectionHeader";
 import Button from "../../../Components/Button";
+import { Link } from "react-router-dom";
 
 const PopularMenu = () => {
   const [menu] = useMenu();
@@ -18,9 +19,11 @@ const PopularMenu = () => {
           <MenuItem key={item._id} item={item}></MenuItem>
         ))}
       </div>
-      <Button className={"my-10 flex justify-center mx-auto"}>
-        View Full Menu
-      </Button>
+      <Link to={"/menu"}>
+        <Button className={"my-10 flex justify-center mx-auto"}>
+          View Full Menu
+        </Button>
+      </Link>
     </div>
   );
 };

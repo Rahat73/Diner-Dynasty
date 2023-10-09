@@ -48,7 +48,7 @@ const ManageItems = () => {
           subHeading={"Take Action"}
         ></SectionHeader>
       </div>
-      <div className="bg-base-200 p-10 w-11/12 max-h-[30rem] overflow-auto mx-auto border border-current">
+      <div className="bg-base-200 p-10 w-11/12 lg:max-h-[32rem] overflow-auto mx-auto border border-current">
         <div className="flex justify-evenly items-center">
           <h1 className="text-2xl font-semibold">Total Items: {menu.length}</h1>
         </div>

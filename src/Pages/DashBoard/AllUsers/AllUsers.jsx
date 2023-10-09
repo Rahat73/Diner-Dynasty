@@ -4,6 +4,7 @@ import { FaTrash, FaUserShield } from "react-icons/fa";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import SectionHeader from "../../../Components/SectionHeader";
 
 const AllUsers = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -60,7 +61,13 @@ const AllUsers = () => {
       <Helmet>
         <title>Diner Dynasty | All Users</title>
       </Helmet>
-      <div className="bg-base-200 p-10 w-11/12 max-h-[30rem] overflow-auto mx-auto my-10 border border-current">
+      <div className="w-full">
+        <SectionHeader
+          heading={"All Users"}
+          subHeading={"Manage"}
+        ></SectionHeader>
+      </div>
+      <div className="bg-base-200 p-10 w-11/12 lg:max-h-[32rem] overflow-auto mx-auto border border-current">
         <div className="flex justify-evenly items-center">
           <h1 className="text-2xl font-semibold">
             Total Users: {users?.length}

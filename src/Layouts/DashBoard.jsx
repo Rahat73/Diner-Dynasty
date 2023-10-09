@@ -1,5 +1,6 @@
 import { BiSolidBowlHot, BiSolidDish } from "react-icons/bi";
 import {
+  FaBars,
   FaBook,
   FaCalendar,
   FaCalendarCheck,
@@ -28,10 +29,10 @@ const DashBoard = () => {
       <div className="drawer-content flex flex-col items-center justify-center">
         {/* Page content here */}
         <label
+          className=" drawer-button lg:hidden w-full my-5 ml-10"
           htmlFor="my-drawer-2"
-          className="btn btn-primary drawer-button lg:hidden"
         >
-          Open drawer
+          <FaBars className="text-2xl cursor-pointer" />
         </label>
         <Outlet></Outlet>
       </div>

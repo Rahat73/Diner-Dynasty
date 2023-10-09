@@ -66,7 +66,12 @@ const CheckoutForm = ({ price, cart }) => {
       });
 
     if (confirmError) {
-      console.log(confirmError);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `${confirmError.message}`,
+        footer: '<a href="">Please reload the page</a>',
+      });
     }
 
     setProcessing(false);
@@ -83,7 +88,7 @@ const CheckoutForm = ({ price, cart }) => {
         cartItems: cart.map((item) => item._id),
         menuItems: cart.map((item) => item.menuItemId),
         itemNames: cart.map((item) => item.name),
-        status: "service pending",
+        status: "pending",
         date: new Date(),
       };
 

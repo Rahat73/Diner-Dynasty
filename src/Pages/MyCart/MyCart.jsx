@@ -42,7 +42,7 @@ const MyCart = () => {
       <Helmet>
         <title>Diner Dynasty | My Cart</title>
       </Helmet>
-      <div className="bg-base-200 p-10 w-11/12 max-h-[30rem] overflow-auto mx-auto my-10 border border-current">
+      <div className="bg-base-200 p-10 w-11/12 lg:max-h-[30rem] overflow-auto mx-auto my-10 border border-current">
         <div className="flex justify-evenly items-center">
           <h1 className="text-2xl font-semibold">
             Total Orders: {cart?.length}

@@ -95,7 +95,7 @@ const AdminHome = () => {
           subHeading={"Welcome to"}
         ></SectionHeader>
       </div>
-      <div className="bg-base-200 p-10 w-11/12 max-h-[34rem] overflow-auto mx-auto my-4 border border-current">
+      <div className="bg-base-200 p-10 w-11/12 lg:max-h-[34rem] overflow-auto mx-auto my-4 border border-current">
         <h1 className="text-2xl">
           Hi,{" "}
           <span className=" font-bold text-amber-500">{user.displayName}</span>
@@ -137,7 +137,7 @@ const AdminHome = () => {
             </div>
           </div>
         </div>
-        <div className=" lg:grid grid-cols-2 gap-10">
+        <div className="grid lg:grid-cols-2 gap-10">
           <div className="w-full h-64">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
