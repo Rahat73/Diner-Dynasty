@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { DarkModeSwitch } from "react-toggle-dark-mode";
 import { themeChange } from "theme-change";
 import ActiveLink from "../../../Components/ActiveLink";
-import logo from "../../../assets/logo.png";
+import { BiSolidDish } from "react-icons/bi";
 import { useContext } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { Link } from "react-router-dom";
@@ -65,6 +65,7 @@ const Navbar = () => {
   };
 
   const [isAdmin] = useAdmin();
+  const [cart] = useCart();
 
   const navbarItems = (
     <>
@@ -87,14 +88,34 @@ const Navbar = () => {
           Dashboard
         </ActiveLink>
       </li>
+      {user ? (
+        <li>
+          <Link
+            to={"dashBoard/myCart"}
+            className="flex justify-start items-center md:hidden"
+          >
+            <FaShoppingCart className="text-xl" />
+            <div className="badge badge-secondary">
+              {`+ ${cart?.length}` || +0}
+            </div>
+          </Link>
+          <button onClick={handleLogOut} className="block md:hidden">
+            Log Out
+          </button>
+        </li>
+      ) : (
+        <li>
+          <Link to={"/login"}>
+            <button className="block md:hidden">Log In</button>
+          </Link>
+        </li>
+      )}
     </>
   );
 
-  const [cart] = useCart();
-
   return (
     <div
-      className={`navbar bg-red-700 sticky top-0 z-10 py-0 font-semibold text-neutral-content ${
+      className={`navbar bg-red-700 sticky top-0 z-10 font-semibold text-neutral-content ${
         navbarChange &&
         `bg-red-950 bg-opacity-70 bg-clip-padding backdrop-filter backdrop-blur-sm`
       } ${navbarHide && `opacity-0`}`}
@@ -124,9 +145,19 @@ const Navbar = () => {
             {navbarItems}
           </ul>
         </div>
-        <a className=" md:w-1/2">
+        {/* <a className=" md:w-1/2">
           <img src={logo} alt="" />
-        </a>
+        </a> */}
+        <Link
+          to={"/"}
+          className="md:mx-5 bg-gradient-to-r from-red-400 via-amber-500 to-green-300 bg-clip-text text-transparent flex justify-center items-center space-x-3"
+        >
+          <BiSolidDish className="text-7xl text-amber-500"></BiSolidDish>
+          <div>
+            <h1 className="text-xl md:text-3xl font-bold">Diner Dynasty</h1>
+            <p className="text-sm md:text-lg font-bold">Restaurant</p>
+          </div>
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className=" menu-horizontal space-x-5 px-1">{navbarItems}</ul>
@@ -139,7 +170,10 @@ const Navbar = () => {
         />
         {user ? (
           <>
-            <Link to={"dashBoard/myCart"} className="btn btn-ghost ml-4">
+            <Link
+              to={"dashBoard/myCart"}
+              className="btn btn-ghost ml-4 hidden md:flex"
+            >
               <FaShoppingCart className="text-xl" />
               <div className="badge badge-secondary">
                 {`+ ${cart?.length}` || +0}
@@ -155,13 +189,18 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-            <button onClick={handleLogOut} className="btn btn-ghost mx-1">
+            <button
+              onClick={handleLogOut}
+              className="btn btn-ghost mx-1 hidden md:block"
+            >
               Log Out
             </button>
           </>
         ) : (
           <Link to={"/login"}>
-            <button className="btn btn-ghost mx-3">Log In</button>
+            <button className="btn btn-ghost mx-3 hidden md:block">
+              Log In
+            </button>
           </Link>
         )}
       </div>

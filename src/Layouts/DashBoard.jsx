@@ -14,7 +14,7 @@ import {
   FaUtensils,
   FaWallet,
 } from "react-icons/fa";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import ActiveLink from "../Components/ActiveLink";
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
@@ -44,6 +44,16 @@ const DashBoard = () => {
         ></label>
         <ul className="menu p-4 w-80 min-h-full bg-red-700 text-neutral-content space-y-2 font-semibold">
           {/* Sidebar content here */}
+          <Link
+            to={"/"}
+            className="my-5 bg-gradient-to-r from-red-400 via-amber-500 to-green-300 bg-clip-text text-transparent flex justify-start items-center space-x-3"
+          >
+            <BiSolidDish className="text-5xl text-amber-500"></BiSolidDish>
+            <div>
+              <h1 className="text-xl md:text-2xl font-bold">Diner Dynasty</h1>
+              <p className="text-sm md:text-lg font-bold">Restaurant</p>
+            </div>
+          </Link>
           {isAdmin ? (
             <>
               <li>
