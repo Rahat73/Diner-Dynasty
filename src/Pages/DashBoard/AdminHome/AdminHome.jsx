@@ -101,7 +101,7 @@ const AdminHome = () => {
           <span className=" font-bold text-amber-500">{user.displayName}</span>
         </h1>
         <div className="stats stats-vertical lg:stats-horizontal shadow w-full mx-auto my-5">
-          <div className="stat flex justify-evenly items-center">
+          <div className="stat flex justify-between lg:justify-evenly items-center">
             <BiSolidDish className="text-6xl" />
             <div>
               <div className="stat-title">Menus</div>
@@ -110,7 +110,7 @@ const AdminHome = () => {
             </div>
           </div>
 
-          <div className="stat flex justify-evenly items-center">
+          <div className="stat flex justify-between lg:justify-evenly items-center">
             <FaUsers className="text-5xl" />
             <div>
               <div className="stat-title">Customers</div>
@@ -119,7 +119,7 @@ const AdminHome = () => {
             </div>
           </div>
 
-          <div className="stat flex justify-evenly items-center">
+          <div className="stat flex justify-between lg:justify-evenly items-center">
             <FaShoppingBag className="text-5xl" />
             <div>
               <div className="stat-title">Orders</div>
@@ -128,7 +128,7 @@ const AdminHome = () => {
             </div>
           </div>
 
-          <div className="stat flex justify-evenly items-center">
+          <div className="stat flex justify-between lg:justify-evenly items-center">
             <FaWallet className="text-5xl" />
             <div>
               <div className="stat-title">Revenue</div>

@@ -1,15 +1,19 @@
+import {
+  loadCaptchaEnginge,
+  LoadCanvasTemplate,
+  validateCaptcha,
+} from "react-simple-captcha";
 import { Link, useNavigate } from "react-router-dom";
 import { BiSolidDish } from "react-icons/bi";
-import { useContext } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
-import {
+import Input, {
   inputClassName,
   labelClassName,
   spanClassName,
 } from "../../Components/Input";
 import loginImg from "../../assets/Login-Register/image-5.jpg";
-import { useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { toast } from "react-toastify";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
@@ -17,6 +21,22 @@ import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 const Register = () => {
   const { createUser, updateUser, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+  const captchaRef = useRef(null);
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  useEffect(() => {
+    loadCaptchaEnginge(6);
+  }, []);
+
+  const handleValidateCaptcha = () => {
+    const userCaptchaValue = captchaRef.current.value;
+    if (validateCaptcha(userCaptchaValue)) {
+      setIsDisabled(false);
+    } else {
+      setIsDisabled(true);
+    }
+  };
+
   const {
     register,
     handleSubmit,
@@ -227,11 +247,23 @@ const Register = () => {
                   </p>
                 </div>
 
+                <div className="col-span-6 flex items-center space-x-5">
+                  <LoadCanvasTemplate />
+                  <Input name={"Captcha"} reference={captchaRef}></Input>
+                  <div
+                    onClick={handleValidateCaptcha}
+                    className="btn btn-outline btn-xs"
+                  >
+                    Validate Captcha
+                  </div>
+                </div>
+
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                   <input
                     className="btn btn-outline text-xs"
                     type="submit"
                     value="Create An Account"
+                    disabled={isDisabled}
                   />
 
                   <p className="mt-4 text-sm sm:mt-0">

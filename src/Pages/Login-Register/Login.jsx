@@ -1,11 +1,6 @@
-import {
-  loadCaptchaEnginge,
-  LoadCanvasTemplate,
-  validateCaptcha,
-} from "react-simple-captcha";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BiSolidDish } from "react-icons/bi";
-import { useState, useEffect, useContext, useRef } from "react";
+import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { toast } from "react-toastify";
@@ -15,25 +10,10 @@ import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
-  const captchaRef = useRef(null);
-  const [isDisabled, setIsDisabled] = useState(true);
 
   const location = useLocation();
   const navigate = useNavigate();
   const from = location.state?.from?.pathname || "/";
-
-  useEffect(() => {
-    loadCaptchaEnginge(6);
-  }, []);
-
-  const handleValidateCaptcha = () => {
-    const userCaptchaValue = captchaRef.current.value;
-    if (validateCaptcha(userCaptchaValue)) {
-      setIsDisabled(false);
-    } else {
-      setIsDisabled(true);
-    }
-  };
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -126,22 +106,11 @@ const Login = () => {
                   <Input name={"Password"} type={"password"}></Input>
                 </div>
 
-                <div className="col-span-6 space-y-2">
-                  <LoadCanvasTemplate />
-                  <Input name={"Captcha"} reference={captchaRef}></Input>
-                  <div
-                    onClick={handleValidateCaptcha}
-                    className="btn btn-outline btn-xs"
-                  >
-                    Validate Captcha
-                  </div>
-                </div>
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                   <input
                     className="btn btn-outline text-xs"
                     type="submit"
                     value="Login"
-                    disabled={isDisabled}
                   />
 
                   <p className="mt-4 text-sm sm:mt-0">
