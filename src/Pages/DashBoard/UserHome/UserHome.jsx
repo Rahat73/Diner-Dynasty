@@ -75,7 +75,9 @@ const UserHome = () => {
               </div>
             </div>
             <h2 className="text-3xl font-bold">{user?.displayName}</h2>
-            <p className="text-lg">{user?.email}</p>
+            <p className="text-lg flex items-center">
+              <FaEnvelope className="mx-3" /> {user?.email}
+            </p>
           </div>
           <div className="col-span-2 hidden lg:flex divider divider-horizontal"></div>
           <div className="col-span-5  flex flex-col justify-center items-start space-y-3">

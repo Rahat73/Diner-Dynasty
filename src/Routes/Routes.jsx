@@ -17,6 +17,7 @@ import Payment from "../Pages/DashBoard/Payment/Payment";
 import AdminHome from "../Pages/DashBoard/AdminHome/AdminHome";
 import UserHome from "../Pages/DashBoard/UserHome/UserHome";
 import NotFound from "../Pages/NotFound/NotFound";
+import Reservation from "../Pages/DashBoard/Reservation/Reservation";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,7 @@ const router = createBrowserRouter([
       </PrivateRoutes>
     ),
     children: [
+      /////////////////////////////User Routes/////////////////////////////
       {
         path: "userHome",
         element: <UserHome></UserHome>,
@@ -68,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment>,
+      },
+      {
+        path: "reservation",
+        element: <Reservation></Reservation>,
       },
       /////////////////////////////Admin Routes/////////////////////////////
       {

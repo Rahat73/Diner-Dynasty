@@ -81,15 +81,14 @@ const Navbar = () => {
       <li>
         <ActiveLink to={"/contactUs"}>Contact Us</ActiveLink>
       </li>
-      <li>
-        <ActiveLink
-          to={isAdmin ? "/dashBoard/adminHome" : "/dashBoard/userHome"}
-        >
-          Dashboard
-        </ActiveLink>
-      </li>
+
       {user ? (
         <li>
+          <ActiveLink
+            to={isAdmin ? "/dashBoard/adminHome" : "/dashBoard/userHome"}
+          >
+            Dashboard
+          </ActiveLink>
           <Link
             to={"dashBoard/myCart"}
             className="flex justify-start items-center md:hidden"
@@ -145,9 +144,6 @@ const Navbar = () => {
             {navbarItems}
           </ul>
         </div>
-        {/* <a className=" md:w-1/2">
-          <img src={logo} alt="" />
-        </a> */}
         <Link
           to={"/"}
           className="md:mx-5 bg-gradient-to-r from-red-400 via-amber-500 to-green-300 bg-clip-text text-transparent flex justify-center items-center space-x-3"

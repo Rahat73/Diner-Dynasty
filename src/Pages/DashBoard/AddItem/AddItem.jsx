@@ -155,13 +155,15 @@ const AddItem = () => {
               {...register("image")}
             />
           </div>
-          <button className="col-span-12">
-            <Button>
-              <p className="flex">
-                {"Add Item"} <FaUtensils className="ml-2" />
-              </p>
-            </Button>
-          </button>
+          <div className="col-span-12 flex justify-center">
+            <button>
+              <Button>
+                <p className="flex">
+                  {"Add Item"} <FaUtensils className="ml-2" />
+                </p>
+              </Button>
+            </button>
+          </div>
         </form>
       </div>
     </>
