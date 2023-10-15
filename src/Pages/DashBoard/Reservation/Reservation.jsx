@@ -75,6 +75,8 @@ const Reservation = () => {
         reset();
         setSelcetedDate("");
         setSelectedGuests("");
+      } else if (res.data.overBooking) {
+        toast.error("Can't book more than 2 times a day");
       } else {
         toast.error(<p>Somthing went wrong</p>);
       }
