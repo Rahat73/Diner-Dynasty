@@ -12,12 +12,23 @@ import {
 import { BiSolidDish } from "react-icons/bi";
 import useBookings from "../../../hooks/useBookings";
 import usePayment from "../../../hooks/usePayment";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 
 const UserHome = () => {
   const { user } = useContext(AuthContext);
   const [cart] = useCart();
   const [bookings] = useBookings();
   const [payments] = usePayment();
+
+  const { data: reviews = [] } = useQuery({
+    queryKey: ["reviews", user?.email],
+    enabled: user != null,
+    queryFn: async () => {
+      const res = await axios(`http://localhost:5000/reviews/${user?.email}`);
+      return res.data;
+    },
+  });
 
   const totalItems = payments.reduce((total, item) => total + item.quantity, 0);
   const totalSpent = payments.reduce((total, item) => total + item.price, 0);
@@ -38,7 +49,7 @@ const UserHome = () => {
           Hi,{" "}
           <span className=" font-bold text-amber-500">{user?.displayName}</span>
         </h1>
-        <div className="stats stats-vertical lg:stats-horizontal shadow w-full mx-auto my-5">
+        <div className="stats stats-vertical lg:stats-horizontal shadow w-full mx-auto">
           <div className="stat flex justify-between lg:justify-evenly items-center">
             <FaShoppingCart className="text-6xl" />
             <div>
@@ -93,7 +104,7 @@ const UserHome = () => {
             <div>
               <p>Orders: {payments.length}</p>
               <p>Bookings: {bookings.length}</p>
-              <p>Reviews: 2</p>
+              <p>Reviews: {reviews.length}</p>
               <p>Cart: {cart.length}</p>
             </div>
           </div>

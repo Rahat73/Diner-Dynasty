@@ -7,7 +7,7 @@ const PaymentHistory = () => {
   return (
     <>
       <Helmet>
-        <title>Diner Dynasty | My Bookings</title>
+        <title>Diner Dynasty | Payment History</title>
       </Helmet>
       <SectionHeader
         heading={"Payment History"}
