@@ -64,12 +64,16 @@ const MyBookings = () => {
                     <td>{item.timeSlot}</td>
                     <td>{item.date}</td>
                     <td>
-                      <button
-                        onClick={() => handleRemoveBooking(item._id)}
-                        className="btn btn-ghost btn-xs"
-                      >
-                        <FaTrash className="text-lg text-red-700" />
-                      </button>
+                      {item.status !== "confirmed" ? (
+                        <button
+                          onClick={() => handleRemoveBooking(item._id)}
+                          className="btn btn-ghost btn-xs"
+                        >
+                          <FaTrash className="text-lg text-red-700" />
+                        </button>
+                      ) : (
+                        <p>Confirmed</p>
+                      )}
                     </td>
                   </tr>
                 ))}

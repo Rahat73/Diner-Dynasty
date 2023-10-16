@@ -14,12 +14,10 @@ const AllUsers = () => {
   });
 
   const handleMakeAdmin = (user) => {
-    fetch(`http://localhost:5000/users/admin/${user._id}`, {
-      method: "PATCH",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.modifiedCount > 0) {
+    axiosSecure
+      .patch(`http://localhost:5000/users/admin/${user._id}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
           refetch();
           toast.success(
             <p>
@@ -42,16 +40,12 @@ const AllUsers = () => {
       confirmButtonText: "Yes, remove!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/users/${id}`, {
-          method: "DELETE",
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.deletedCount > 0) {
-              refetch();
-              Swal.fire("Removed!", "User has been removed.", "success");
-            }
-          });
+        axiosSecure.delete(`http://localhost:5000/users/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            Swal.fire("Removed!", "User has been removed.", "success");
+          }
+        });
       }
     });
   };
