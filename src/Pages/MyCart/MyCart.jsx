@@ -4,6 +4,7 @@ import useCart from "../../hooks/useCart";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import SectionHeader from "../../Components/SectionHeader";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -31,6 +32,8 @@ const MyCart = () => {
                 "Item has been removed from the cart.",
                 "success"
               );
+            } else {
+              Swal.fire("Oops!", "Something went wrong...", "error");
             }
           });
       }
@@ -42,10 +45,11 @@ const MyCart = () => {
       <Helmet>
         <title>Diner Dynasty | My Cart</title>
       </Helmet>
-      <div className="bg-base-200 p-10 w-11/12 lg:max-h-[30rem] overflow-auto mx-auto my-10 border border-current">
+      <SectionHeader heading={"My Cart"} subHeading={"Manage"}></SectionHeader>
+      <div className="bg-base-200 p-10 w-11/12 lg:max-h-[30rem] overflow-auto mx-auto border border-current">
         <div className="flex justify-evenly items-center">
           <h1 className="text-2xl font-semibold">
-            Total Orders: {cart?.length}
+            Total Orders: {cart.length}
           </h1>
           <h1 className="text-2xl font-semibold">Total Price: ${total}</h1>
           <Link to={"/dashBoard/payment"}>

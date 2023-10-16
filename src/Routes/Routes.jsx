@@ -18,6 +18,7 @@ import AdminHome from "../Pages/DashBoard/AdminHome/AdminHome";
 import UserHome from "../Pages/DashBoard/UserHome/UserHome";
 import NotFound from "../Pages/NotFound/NotFound";
 import Reservation from "../Pages/DashBoard/Reservation/Reservation";
+import MyBookings from "../Pages/DashBoard/MyBookings/MyBookings";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
       {
         path: "reservation",
         element: <Reservation></Reservation>,
+      },
+      {
+        path: "myBookings",
+        element: <MyBookings></MyBookings>,
       },
       /////////////////////////////Admin Routes/////////////////////////////
       {

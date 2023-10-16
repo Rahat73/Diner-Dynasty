@@ -114,8 +114,8 @@ const DashBoard = () => {
                 </ActiveLink>
               </li>
               <li>
-                <ActiveLink to={"/dashBoard/myBooking"}>
-                  <FaCalendarCheck className="text-lg" /> My Booking
+                <ActiveLink to={"/dashBoard/myBookings"}>
+                  <FaCalendarCheck className="text-lg" /> My Bookings
                 </ActiveLink>
               </li>
             </>

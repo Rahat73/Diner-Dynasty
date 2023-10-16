@@ -209,9 +209,12 @@ const Reservation = () => {
               defaultValue={user?.email}
             />
           </div>
-          <div className="col-span-12 flex justify-center">
+          <div className="col-span-12 flex flex-col justify-center items-center pt-5 space-y-5">
+            <p className=" text-red-600">
+              You can make reservations only twice a day
+            </p>
             <button>
-              <Button className="my-5">
+              <Button>
                 <p className="flex">
                   {"Book Table"} <FaCalendarCheck className="ml-2" />
                 </p>
