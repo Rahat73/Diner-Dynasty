@@ -39,7 +39,7 @@ const MyBookings = () => {
       ></SectionHeader>
       <div className="bg-base-200 p-10 w-11/12 lg:max-h-[30rem] overflow-auto mx-auto border border-current">
         <h1 className="text-2xl font-semibold text-center">
-          Total Orders: {bookings.length}
+          Total Bookings: {bookings.length}
         </h1>
         <div className="overflow-x-auto my-10">
           {bookings.length > 0 ? (
@@ -52,6 +52,7 @@ const MyBookings = () => {
                   <th>Guests</th>
                   <th>Time Slot</th>
                   <th>Date</th>
+                  <th>Remove</th>
                 </tr>
               </thead>
               <tbody>
@@ -62,14 +63,14 @@ const MyBookings = () => {
                     <td>{item.guests}</td>
                     <td>{item.timeSlot}</td>
                     <td>{item.date}</td>
-                    <th>
+                    <td>
                       <button
                         onClick={() => handleRemoveBooking(item._id)}
                         className="btn btn-ghost btn-xs"
                       >
                         <FaTrash className="text-lg text-red-700" />
                       </button>
-                    </th>
+                    </td>
                   </tr>
                 ))}
               </tbody>

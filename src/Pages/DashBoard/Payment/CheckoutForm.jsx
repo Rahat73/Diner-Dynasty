@@ -89,7 +89,6 @@ const CheckoutForm = ({ price, cart }) => {
         menuItems: cart.map((item) => item.menuItemId),
         itemNames: cart.map((item) => item.name),
         status: "pending",
-        date: new Date(),
       };
 
       axiosSecure.post("/payments", paymentInfo).then((res) => {

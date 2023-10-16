@@ -19,6 +19,7 @@ import UserHome from "../Pages/DashBoard/UserHome/UserHome";
 import NotFound from "../Pages/NotFound/NotFound";
 import Reservation from "../Pages/DashBoard/Reservation/Reservation";
 import MyBookings from "../Pages/DashBoard/MyBookings/MyBookings";
+import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -71,6 +72,10 @@ const router = createBrowserRouter([
       {
         path: "payment",
         element: <Payment></Payment>,
+      },
+      {
+        path: "paymentHistory",
+        element: <PaymentHistory></PaymentHistory>,
       },
       {
         path: "reservation",

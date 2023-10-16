@@ -10,10 +10,18 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 import { BiSolidDish } from "react-icons/bi";
+import useBookings from "../../../hooks/useBookings";
+import usePayment from "../../../hooks/usePayment";
 
 const UserHome = () => {
   const { user } = useContext(AuthContext);
   const [cart] = useCart();
+  const [bookings] = useBookings();
+  const [payments] = usePayment();
+
+  const totalItems = payments.reduce((total, item) => total + item.quantity, 0);
+  const totalSpent = payments.reduce((total, item) => total + item.price, 0);
+
   return (
     <>
       <Helmet>
@@ -43,7 +51,7 @@ const UserHome = () => {
             <FaCalendarCheck className="text-5xl" />
             <div>
               <div className="stat-title">Bookings</div>
-              <div className="stat-value">2</div>
+              <div className="stat-value">{bookings.length}</div>
             </div>
           </div>
 
@@ -51,7 +59,7 @@ const UserHome = () => {
             <FaDollarSign className="text-5xl" />
             <div>
               <div className="stat-title">Spendings</div>
-              <div className="stat-value">100</div>
+              <div className="stat-value">{totalSpent}</div>
             </div>
           </div>
 
@@ -59,7 +67,7 @@ const UserHome = () => {
             <BiSolidDish className="text-6xl" />
             <div>
               <div className="stat-title">Items Bought</div>
-              <div className="stat-value">4</div>
+              <div className="stat-value">{totalItems}</div>
             </div>
           </div>
         </div>
@@ -83,8 +91,8 @@ const UserHome = () => {
           <div className="col-span-5  flex flex-col justify-center items-start space-y-3">
             <h2 className="text-2xl font-bold">Your Activities</h2>
             <div>
-              <p>Orders: 2</p>
-              <p>Bookings: 2</p>
+              <p>Orders: {payments.length}</p>
+              <p>Bookings: {bookings.length}</p>
               <p>Reviews: 2</p>
               <p>Cart: {cart.length}</p>
             </div>
