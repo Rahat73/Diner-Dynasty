@@ -17,4 +17,16 @@ const homeVariants = {
   },
 };
 
-export { homeVariants };
+const homeComponentsVariants = {
+  hidden: {
+    scale: 0,
+    opacity: 0,
+  },
+  visible: {
+    scale: 1,
+    opacity: 1,
+    transition: { duration: 0.5, ease: easeInOut },
+  },
+};
+
+export { homeVariants, homeComponentsVariants };

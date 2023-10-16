@@ -5,6 +5,8 @@ import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import SectionHeader from "../../../Components/SectionHeader";
+import { motion } from "framer-motion";
+import { dashboardVariants } from "../DashboardVariants/DashboardVariants";
 
 const AllUsers = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -55,71 +57,76 @@ const AllUsers = () => {
       <Helmet>
         <title>Diner Dynasty | All Users</title>
       </Helmet>
-      <div className="w-full">
+      <motion.div
+        variants={dashboardVariants}
+        initial="hidden"
+        animate="visible"
+        className="w-full"
+      >
         <SectionHeader
           heading={"All Users"}
           subHeading={"Manage"}
         ></SectionHeader>
-      </div>
-      <div className="bg-base-200 p-10 w-11/12 lg:max-h-[32rem] overflow-auto mx-auto border border-current">
-        <div className="flex justify-evenly items-center">
-          <h1 className="text-2xl font-semibold">
-            Total Users: {users?.length}
-          </h1>
-        </div>
-        <div className="overflow-x-auto my-10">
-          {users.length > 0 ? (
-            <table className="table">
-              {/* head */}
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>User Name</th>
-                  <th>Email</th>
-                  <th>Role</th>
-                  <th>Remove</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.map((user, index) => (
-                  <tr key={user._id}>
-                    <th>{index + 1}</th>
-                    <td>{user.userName}</td>
-                    <td>{user.userEmail}</td>
-                    <td>
-                      {user.role === "admin" ? (
-                        "Admin"
-                      ) : (
-                        <div
-                          className="tooltip tooltip-left"
-                          data-tip="make admin"
-                        >
-                          <button
-                            onClick={() => handleMakeAdmin(user)}
-                            className="btn btn-ghost btn-xs"
-                          >
-                            <FaUserShield className="text-2xl text-green-600" />
-                          </button>
-                        </div>
-                      )}
-                    </td>
-                    <th>
-                      <button
-                        onClick={() => handleRemoveUser(user._id)}
-                        className="btn btn-ghost btn-xs"
-                      >
-                        <FaTrash className="text-xl text-red-700" />
-                      </button>
-                    </th>
+        <div className="bg-base-200 p-10 w-11/12 lg:max-h-[32rem] overflow-auto mx-auto border border-current">
+          <div className="flex justify-evenly items-center">
+            <h1 className="text-2xl font-semibold">
+              Total Users: {users?.length}
+            </h1>
+          </div>
+          <div className="overflow-x-auto my-10">
+            {users.length > 0 ? (
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>User Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Remove</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <div className="text-4xl text-center my-20">No users found</div>
-          )}
+                </thead>
+                <tbody>
+                  {users.map((user, index) => (
+                    <tr key={user._id}>
+                      <th>{index + 1}</th>
+                      <td>{user.userName}</td>
+                      <td>{user.userEmail}</td>
+                      <td>
+                        {user.role === "admin" ? (
+                          "Admin"
+                        ) : (
+                          <div
+                            className="tooltip tooltip-left"
+                            data-tip="make admin"
+                          >
+                            <button
+                              onClick={() => handleMakeAdmin(user)}
+                              className="btn btn-ghost btn-xs"
+                            >
+                              <FaUserShield className="text-2xl text-green-600" />
+                            </button>
+                          </div>
+                        )}
+                      </td>
+                      <th>
+                        <button
+                          onClick={() => handleRemoveUser(user._id)}
+                          className="btn btn-ghost btn-xs"
+                        >
+                          <FaTrash className="text-xl text-red-700" />
+                        </button>
+                      </th>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <div className="text-4xl text-center my-20">No users found</div>
+            )}
+          </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

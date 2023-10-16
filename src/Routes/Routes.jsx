@@ -8,7 +8,6 @@ import Register from "../Pages/Login-Register/Register";
 import PrivateRoutes from "./PrivateRoutes";
 import ContactUs from "../Pages/ContactUs/ContactUs";
 import DashBoard from "../Layouts/DashBoard";
-import MyCart from "../Pages/MyCart/MyCart";
 import AdminRoutes from "./AdminRoutes";
 import AllUsers from "../Pages/DashBoard/AllUsers/AllUsers";
 import AddItem from "../Pages/DashBoard/AddItem/AddItem";
@@ -22,6 +21,7 @@ import MyBookings from "../Pages/DashBoard/MyBookings/MyBookings";
 import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
 import AddReview from "../Pages/DashBoard/AddReview/AddReview";
 import ManageBookings from "../Pages/DashBoard/ManageBookings/ManageBookings";
+import MyCart from "../Pages/DashBoard/MyCart/MyCart";
 
 const router = createBrowserRouter([
   {

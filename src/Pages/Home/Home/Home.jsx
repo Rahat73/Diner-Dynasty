@@ -10,7 +10,7 @@ import DescriptionBanner from "../DescriptionBanner/DescriptionBanner";
 import Featured from "../Featured/Featured";
 import PopularMenu from "../PopularMenu/PopularMenu";
 import Testimonials from "../Testimonials/Testimonials";
-import { homeVariants } from "./HomeVariants";
+import { homeComponentsVariants, homeVariants } from "./HomeVariants";
 
 const Home = () => {
   useEffect(() => {
@@ -28,13 +28,56 @@ const Home = () => {
         exit="exit"
       >
         <Banner></Banner>
-        <CategorySlider></CategorySlider>
-        <DescriptionBanner></DescriptionBanner>
-        <PopularMenu></PopularMenu>
-        <CallUsBanner></CallUsBanner>
-        <ChefRecommends></ChefRecommends>
-        <Featured></Featured>
-        <Testimonials></Testimonials>
+
+        <motion.div
+          variants={homeComponentsVariants}
+          initial="hidden"
+          whileInView="visible"
+        >
+          <DescriptionBanner></DescriptionBanner>
+        </motion.div>
+        <motion.div
+          variants={homeComponentsVariants}
+          initial="hidden"
+          whileInView="visible"
+        >
+          <CategorySlider></CategorySlider>
+        </motion.div>
+        <motion.div
+          variants={homeComponentsVariants}
+          initial="hidden"
+          whileInView="visible"
+        >
+          <PopularMenu></PopularMenu>
+        </motion.div>
+        <motion.div
+          variants={homeComponentsVariants}
+          initial="hidden"
+          whileInView="visible"
+        >
+          <CallUsBanner></CallUsBanner>
+        </motion.div>
+        <motion.div
+          variants={homeComponentsVariants}
+          initial="hidden"
+          whileInView="visible"
+        >
+          <ChefRecommends></ChefRecommends>
+        </motion.div>
+        <motion.div
+          variants={homeComponentsVariants}
+          initial="hidden"
+          whileInView="visible"
+        >
+          <Featured></Featured>
+        </motion.div>
+        <motion.div
+          variants={homeComponentsVariants}
+          initial="hidden"
+          whileInView="visible"
+        >
+          <Testimonials></Testimonials>
+        </motion.div>
       </motion.div>
     </div>
   );

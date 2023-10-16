@@ -10,6 +10,8 @@ import { parseISO, format } from "date-fns";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { motion } from "framer-motion";
+import { dashboardVariants } from "../DashboardVariants/DashboardVariants";
 
 const Reservation = () => {
   const { user } = useContext(AuthContext);
@@ -88,141 +90,147 @@ const Reservation = () => {
       <Helmet>
         <title>Diner Dynasty | Reservation</title>
       </Helmet>
-      <div className="w-full">
+      <motion.div
+        variants={dashboardVariants}
+        initial="hidden"
+        animate="visible"
+        className="w-full"
+      >
         <SectionHeader
           heading={"Reservation"}
           subHeading={"Book a table"}
         ></SectionHeader>
-      </div>
-      <div className="bg-base-200 p-10 w-11/12 mx-auto border border-current">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="space-y-5 md:space-y-0 md:grid grid-cols-12 gap-3"
-        >
-          <div className="form-control w-full md:col-span-6 lg:col-span-4">
-            <label className="label">
-              <span className="label-text">Date*</span>
-              {errors.date?.type === "min" && (
-                <p className="text-red-600 text-sm">
-                  {"Can only select future dates"}
-                </p>
-              )}
-              {errors.date?.type === "max" && (
-                <p className="text-red-600 text-sm">
-                  {"Can only select 5 days in advance"}
-                </p>
-              )}
-            </label>
-            <input
-              type="date"
-              placeholder="dd/mm/yy"
-              className="input input-bordered w-full"
-              required
-              {...register("date", {
-                min: new Date().toISOString(),
-                max: futureDate.toISOString(),
-                onBlur: handleDateChange,
-              })}
-            />
-          </div>
-          <div className="form-control w-full md:col-span-6 lg:col-span-4">
-            <label className="label">
-              <span className="label-text">Guest*</span>
-            </label>
-            <select
-              className="select select-bordered w-full"
-              required
-              defaultValue={""}
-              {...register("guests", {
-                onChange: handleGuestChange,
-              })}
-            >
-              <option disabled value={""}>
-                Select an option
-              </option>
-              <option>1</option>
-              <option>2</option>
-              <option>3-4</option>
-              <option>5-6</option>
-              <option>7-8</option>
-            </select>
-          </div>
-          <div className="form-control w-full md:col-span-6 lg:col-span-4">
-            <label className="label">
-              <span className="label-text">Time Slot*</span>
-            </label>
-            <select
-              className="select select-bordered w-full"
-              required
-              defaultValue=""
-              {...register("timeSlot")}
-            >
-              <option disabled value={""}>
-                Select an option
-              </option>
-              {!isLoading &&
-                availableSlots.map((timeSlot) => (
-                  <option key={timeSlot.slot} value={timeSlot.slot}>
-                    {timeSlot.slot}{" "}
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    {timeSlot.left} of {timeSlot.capacity} left
-                  </option>
-                ))}
-            </select>
-          </div>
-          <div className="form-control w-full md:col-span-6 lg:col-span-4">
-            <label className="label">
-              <span className="label-text">Name*</span>
-            </label>
-            <input
-              type="text"
-              placeholder="e.g. Some One"
-              className="input input-bordered w-full cursor-not-allowed"
-              required
-              readOnly
-              defaultValue={user?.displayName}
-            />
-          </div>
-          <div className="form-control w-full md:col-span-6 lg:col-span-4">
-            <label className="label">
-              <span className="label-text">Phone*</span>
-            </label>
-            <input
-              type="tel"
-              placeholder="e.g. 01XXXXXXXXX"
-              className="input input-bordered w-full"
-              pattern="^01[35789]\d{8}$"
-              required
-              {...register("phone")}
-            />
-          </div>
-          <div className="form-control w-full md:col-span-6 lg:col-span-4">
-            <label className="label">
-              <span className="label-text">Email*</span>
-            </label>
-            <input
-              type="email"
-              placeholder="e.g. someone@mail.com"
-              className="input input-bordered w-full cursor-not-allowed"
-              required
-              readOnly
-              defaultValue={user?.email}
-            />
-          </div>
-          <div className="col-span-12 flex flex-col justify-center items-center pt-5 space-y-5">
-            <p className=" text-red-600">
-              You can make reservations only twice a day
-            </p>
-            <button>
-              <Button>
-                <p className="flex">
-                  {"Book Table"} <FaCalendarCheck className="ml-2" />
-                </p>
-              </Button>
-            </button>
-          </div>
-        </form>
-      </div>
+
+        <div className="bg-base-200 p-10 w-11/12 mx-auto border border-current">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-5 md:space-y-0 md:grid grid-cols-12 gap-3"
+          >
+            <div className="form-control w-full md:col-span-6 lg:col-span-4">
+              <label className="label">
+                <span className="label-text">Date*</span>
+                {errors.date?.type === "min" && (
+                  <p className="text-red-600 text-sm">
+                    {"Can only select future dates"}
+                  </p>
+                )}
+                {errors.date?.type === "max" && (
+                  <p className="text-red-600 text-sm">
+                    {"Can only select 5 days in advance"}
+                  </p>
+                )}
+              </label>
+              <input
+                type="date"
+                placeholder="dd/mm/yy"
+                className="input input-bordered w-full"
+                required
+                {...register("date", {
+                  min: new Date().toISOString(),
+                  max: futureDate.toISOString(),
+                  onBlur: handleDateChange,
+                })}
+              />
+            </div>
+            <div className="form-control w-full md:col-span-6 lg:col-span-4">
+              <label className="label">
+                <span className="label-text">Guest*</span>
+              </label>
+              <select
+                className="select select-bordered w-full"
+                required
+                defaultValue={""}
+                {...register("guests", {
+                  onChange: handleGuestChange,
+                })}
+              >
+                <option disabled value={""}>
+                  Select an option
+                </option>
+                <option>1</option>
+                <option>2</option>
+                <option>3-4</option>
+                <option>5-6</option>
+                <option>7-8</option>
+              </select>
+            </div>
+            <div className="form-control w-full md:col-span-6 lg:col-span-4">
+              <label className="label">
+                <span className="label-text">Time Slot*</span>
+              </label>
+              <select
+                className="select select-bordered w-full"
+                required
+                defaultValue=""
+                {...register("timeSlot")}
+              >
+                <option disabled value={""}>
+                  Select an option
+                </option>
+                {!isLoading &&
+                  availableSlots.map((timeSlot) => (
+                    <option key={timeSlot.slot} value={timeSlot.slot}>
+                      {timeSlot.slot}{" "}
+                      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                      {timeSlot.left} of {timeSlot.capacity} left
+                    </option>
+                  ))}
+              </select>
+            </div>
+            <div className="form-control w-full md:col-span-6 lg:col-span-4">
+              <label className="label">
+                <span className="label-text">Name*</span>
+              </label>
+              <input
+                type="text"
+                placeholder="e.g. Some One"
+                className="input input-bordered w-full cursor-not-allowed"
+                required
+                readOnly
+                defaultValue={user?.displayName}
+              />
+            </div>
+            <div className="form-control w-full md:col-span-6 lg:col-span-4">
+              <label className="label">
+                <span className="label-text">Phone*</span>
+              </label>
+              <input
+                type="tel"
+                placeholder="e.g. 01XXXXXXXXX"
+                className="input input-bordered w-full"
+                pattern="^01[35789]\d{8}$"
+                required
+                {...register("phone")}
+              />
+            </div>
+            <div className="form-control w-full md:col-span-6 lg:col-span-4">
+              <label className="label">
+                <span className="label-text">Email*</span>
+              </label>
+              <input
+                type="email"
+                placeholder="e.g. someone@mail.com"
+                className="input input-bordered w-full cursor-not-allowed"
+                required
+                readOnly
+                defaultValue={user?.email}
+              />
+            </div>
+            <div className="col-span-12 flex flex-col justify-center items-center pt-5 space-y-5">
+              <p className=" text-red-600">
+                You can make reservations only twice a day
+              </p>
+              <button>
+                <Button>
+                  <p className="flex">
+                    {"Book Table"} <FaCalendarCheck className="ml-2" />
+                  </p>
+                </Button>
+              </button>
+            </div>
+          </form>
+        </div>
+      </motion.div>
     </>
   );
 };

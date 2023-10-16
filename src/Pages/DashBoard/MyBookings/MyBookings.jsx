@@ -4,6 +4,8 @@ import useBookings from "../../../hooks/useBookings";
 import { FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import axios from "axios";
+import { motion } from "framer-motion";
+import { dashboardVariants } from "../DashboardVariants/DashboardVariants";
 
 const MyBookings = () => {
   const [bookings, refetch] = useBookings();
@@ -33,59 +35,66 @@ const MyBookings = () => {
       <Helmet>
         <title>Diner Dynasty | My Bookings</title>
       </Helmet>
-      <SectionHeader
-        heading={"My Bookings"}
-        subHeading={"Manage"}
-      ></SectionHeader>
-      <div className="bg-base-200 p-10 w-11/12 lg:max-h-[30rem] overflow-auto mx-auto border border-current">
-        <h1 className="text-2xl font-semibold text-center">
-          Total Bookings: {bookings.length}
-        </h1>
-        <div className="overflow-x-auto my-10">
-          {bookings.length > 0 ? (
-            <table className="table">
-              {/* head */}
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Booked On</th>
-                  <th>Guests</th>
-                  <th>Time Slot</th>
-                  <th>Date</th>
-                  <th>Remove</th>
-                </tr>
-              </thead>
-              <tbody>
-                {bookings.map((item, index) => (
-                  <tr key={item._id}>
-                    <th>{index + 1}</th>
-                    <td>{item.bookedOn}</td>
-                    <td>{item.guests}</td>
-                    <td>{item.timeSlot}</td>
-                    <td>{item.date}</td>
-                    <td>
-                      {item.status !== "confirmed" ? (
-                        <button
-                          onClick={() => handleRemoveBooking(item._id)}
-                          className="btn btn-ghost btn-xs"
-                        >
-                          <FaTrash className="text-lg text-red-700" />
-                        </button>
-                      ) : (
-                        <p>Confirmed</p>
-                      )}
-                    </td>
+      <motion.div
+        variants={dashboardVariants}
+        initial="hidden"
+        animate="visible"
+        className="w-full"
+      >
+        <SectionHeader
+          heading={"My Bookings"}
+          subHeading={"Manage"}
+        ></SectionHeader>
+        <div className="bg-base-200 p-10 w-11/12 lg:max-h-[30rem] overflow-auto mx-auto border border-current">
+          <h1 className="text-2xl font-semibold text-center">
+            Total Bookings: {bookings.length}
+          </h1>
+          <div className="overflow-x-auto my-10">
+            {bookings.length > 0 ? (
+              <table className="table">
+                {/* head */}
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Booked On</th>
+                    <th>Guests</th>
+                    <th>Time Slot</th>
+                    <th>Date</th>
+                    <th>Remove</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          ) : (
-            <div className="text-4xl text-center my-20">
-              No reservations to show
-            </div>
-          )}
+                </thead>
+                <tbody>
+                  {bookings.map((item, index) => (
+                    <tr key={item._id}>
+                      <th>{index + 1}</th>
+                      <td>{item.bookedOn}</td>
+                      <td>{item.guests}</td>
+                      <td>{item.timeSlot}</td>
+                      <td>{item.date}</td>
+                      <td>
+                        {item.status !== "confirmed" ? (
+                          <button
+                            onClick={() => handleRemoveBooking(item._id)}
+                            className="btn btn-ghost btn-xs"
+                          >
+                            <FaTrash className="text-lg text-red-700" />
+                          </button>
+                        ) : (
+                          <p>Confirmed</p>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            ) : (
+              <div className="text-4xl text-center my-20">
+                No reservations to show
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

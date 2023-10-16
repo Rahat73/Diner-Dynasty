@@ -18,6 +18,8 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { motion } from "framer-motion";
+import { dashboardVariants } from "../DashboardVariants/DashboardVariants";
 
 ////////////////////////////////Recharts//////////////////////////////////
 const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "red", "pink"];
@@ -89,114 +91,122 @@ const AdminHome = () => {
       <Helmet>
         <title>Diner Dynasty | Admin Home</title>
       </Helmet>
-      <div className="w-full">
+      <motion.div
+        variants={dashboardVariants}
+        initial="hidden"
+        animate="visible"
+        className="w-full"
+      >
         <SectionHeader
           heading={"Admin Home"}
           subHeading={"Welcome to"}
         ></SectionHeader>
-      </div>
-      <div className="bg-base-200 p-10 w-11/12 lg:max-h-[34rem] overflow-auto mx-auto my-4 border border-current">
-        <h1 className="text-2xl">
-          Hi,{" "}
-          <span className=" font-bold text-amber-500">{user.displayName}</span>
-        </h1>
-        <div className="stats stats-vertical lg:stats-horizontal shadow w-full mx-auto my-5">
-          <div className="stat flex justify-between lg:justify-evenly items-center">
-            <BiSolidDish className="text-6xl" />
-            <div>
-              <div className="stat-title">Menus</div>
-              <div className="stat-value">{stats.menus}</div>
-              <div className="stat-desc">Jan 1st - Feb 1st</div>
+
+        <div className="bg-base-200 p-10 w-11/12 lg:max-h-[34rem] overflow-auto mx-auto my-4 border border-current">
+          <h1 className="text-2xl">
+            Hi,{" "}
+            <span className=" font-bold text-amber-500">
+              {user.displayName}
+            </span>
+          </h1>
+          <div className="stats stats-vertical lg:stats-horizontal shadow w-full mx-auto my-5">
+            <div className="stat flex justify-between lg:justify-evenly items-center">
+              <BiSolidDish className="text-6xl" />
+              <div>
+                <div className="stat-title">Menus</div>
+                <div className="stat-value">{stats.menus}</div>
+                <div className="stat-desc">Jan 1st - Feb 1st</div>
+              </div>
+            </div>
+
+            <div className="stat flex justify-between lg:justify-evenly items-center">
+              <FaUsers className="text-5xl" />
+              <div>
+                <div className="stat-title">Customers</div>
+                <div className="stat-value">{stats.users}</div>
+                <div className="stat-desc">↗︎ 1 (22%)</div>
+              </div>
+            </div>
+
+            <div className="stat flex justify-between lg:justify-evenly items-center">
+              <FaShoppingBag className="text-5xl" />
+              <div>
+                <div className="stat-title">Orders</div>
+                <div className="stat-value">{stats.orders}</div>
+                <div className="stat-desc">↗︎ 2 (14%)</div>
+              </div>
+            </div>
+
+            <div className="stat flex justify-between lg:justify-evenly items-center">
+              <FaWallet className="text-5xl" />
+              <div>
+                <div className="stat-title">Revenue</div>
+                <div className="stat-value">{stats.revenue}</div>
+                <div className="stat-desc">↗︎ 20 (15%)</div>
+              </div>
             </div>
           </div>
-
-          <div className="stat flex justify-between lg:justify-evenly items-center">
-            <FaUsers className="text-5xl" />
-            <div>
-              <div className="stat-title">Customers</div>
-              <div className="stat-value">{stats.users}</div>
-              <div className="stat-desc">↗︎ 1 (22%)</div>
-            </div>
-          </div>
-
-          <div className="stat flex justify-between lg:justify-evenly items-center">
-            <FaShoppingBag className="text-5xl" />
-            <div>
-              <div className="stat-title">Orders</div>
-              <div className="stat-value">{stats.orders}</div>
-              <div className="stat-desc">↗︎ 2 (14%)</div>
-            </div>
-          </div>
-
-          <div className="stat flex justify-between lg:justify-evenly items-center">
-            <FaWallet className="text-5xl" />
-            <div>
-              <div className="stat-title">Revenue</div>
-              <div className="stat-value">{stats.revenue}</div>
-              <div className="stat-desc">↗︎ 20 (15%)</div>
-            </div>
-          </div>
-        </div>
-        <div className="grid lg:grid-cols-2 gap-10">
-          <div className="w-full h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <BarChart
-                width={500}
-                height={300}
-                data={chartData}
-                margin={{
-                  top: 20,
-                  right: 30,
-                  left: 20,
-                  bottom: 5,
-                }}
-              >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="category" />
-                <YAxis />
-                <Bar
-                  dataKey="total"
-                  fill="#8884d8"
-                  shape={<TriangleBar />}
-                  label={{ position: "top" }}
-                >
-                  {chartData.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={colors[index % 20]} />
-                  ))}
-                </Bar>
-              </BarChart>
-            </ResponsiveContainer>
-            <h1 className="text-center">Category vs Revnue</h1>
-          </div>
-
-          <div className="w-full h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Legend></Legend>
-                <Pie
+          <div className="grid lg:grid-cols-2 gap-10">
+            <div className="w-full h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart
+                  width={500}
+                  height={300}
                   data={chartData}
-                  cx="50%"
-                  cy="50%"
-                  labelLine={false}
-                  label={renderCustomizedLabel}
-                  outerRadius={100}
-                  fill="#8884d8"
-                  dataKey="itemCount"
+                  margin={{
+                    top: 20,
+                    right: 30,
+                    left: 20,
+                    bottom: 5,
+                  }}
                 >
-                  {chartData.map((entry, index) => (
-                    <Cell
-                      name={entry.category}
-                      key={`cell-${index}`}
-                      fill={colors[index % colors.length]}
-                    />
-                  ))}
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
-            <h1 className="text-center">Category vs Orders</h1>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="category" />
+                  <YAxis />
+                  <Bar
+                    dataKey="total"
+                    fill="#8884d8"
+                    shape={<TriangleBar />}
+                    label={{ position: "top" }}
+                  >
+                    {chartData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                    ))}
+                  </Bar>
+                </BarChart>
+              </ResponsiveContainer>
+              <h1 className="text-center">Category vs Revnue</h1>
+            </div>
+
+            <div className="w-full h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Legend></Legend>
+                  <Pie
+                    data={chartData}
+                    cx="50%"
+                    cy="50%"
+                    labelLine={false}
+                    label={renderCustomizedLabel}
+                    outerRadius={100}
+                    fill="#8884d8"
+                    dataKey="itemCount"
+                  >
+                    {chartData.map((entry, index) => (
+                      <Cell
+                        name={entry.category}
+                        key={`cell-${index}`}
+                        fill={colors[index % colors.length]}
+                      />
+                    ))}
+                  </Pie>
+                </PieChart>
+              </ResponsiveContainer>
+              <h1 className="text-center">Category vs Orders</h1>
+            </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };
