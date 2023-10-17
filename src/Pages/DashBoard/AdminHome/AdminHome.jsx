@@ -141,7 +141,9 @@ const AdminHome = () => {
               <FaWallet className="text-5xl" />
               <div>
                 <div className="stat-title">Revenue</div>
-                <div className="stat-value">{stats.revenue}</div>
+                <div className="stat-value">
+                  {parseFloat(stats.revenue).toFixed(2)}
+                </div>
                 <div className="stat-desc">↗︎ 20 (15%)</div>
               </div>
             </div>

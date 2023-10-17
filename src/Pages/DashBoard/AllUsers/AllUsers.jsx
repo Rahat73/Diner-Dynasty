@@ -17,7 +17,7 @@ const AllUsers = () => {
 
   const handleMakeAdmin = (user) => {
     axiosSecure
-      .patch(`http://localhost:5000/users/admin/${user._id}`)
+      .patch(`https://diner-dynasty-server.vercel.app/users/admin/${user._id}`)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           refetch();
@@ -42,12 +42,14 @@ const AllUsers = () => {
       confirmButtonText: "Yes, remove!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`http://localhost:5000/users/${id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            refetch();
-            Swal.fire("Removed!", "User has been removed.", "success");
-          }
-        });
+        axiosSecure
+          .delete(`https://diner-dynasty-server.vercel.app/users/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              Swal.fire("Removed!", "User has been removed.", "success");
+            }
+          });
       }
     });
   };

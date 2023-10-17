@@ -15,7 +15,7 @@ const SocialLogin = () => {
       .then((userCredentials) => {
         const user = userCredentials.user;
         const saveUser = { userName: user.displayName, userEmail: user.email };
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://diner-dynasty-server.vercel.app/users`, {
           method: "POST",
           headers: {
             "content-type": "application/json",

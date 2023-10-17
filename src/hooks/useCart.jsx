@@ -13,7 +13,7 @@ const useCart = () => {
     queryFn: async () => {
       const res = await axiosSecure(`/carts?email=${user?.email}`);
       // const res = await fetch(
-      //   `http://localhost:5000/carts?email=${user?.email}`,
+      //   `https://diner-dynasty-server.vercel.app/carts?email=${user?.email}`,
       //   {
       //     headers: {
       //       authorization: `bearer ${token}`,

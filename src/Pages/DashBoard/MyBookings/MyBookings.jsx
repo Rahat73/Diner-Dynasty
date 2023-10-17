@@ -19,14 +19,16 @@ const MyBookings = () => {
       confirmButtonText: "Yes, remove it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axios.delete(`http://localhost:5000/bookings/${id}`).then((res) => {
-          if (res.data.deletedCount > 0) {
-            refetch();
-            Swal.fire("Removed!", "Reservation has been removed", "success");
-          } else {
-            Swal.fire("Oops!", "Something went wrong", "error");
-          }
-        });
+        axios
+          .delete(`https://diner-dynasty-server.vercel.app/bookings/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              Swal.fire("Removed!", "Reservation has been removed", "success");
+            } else {
+              Swal.fire("Oops!", "Something went wrong", "error");
+            }
+          });
       }
     });
   };

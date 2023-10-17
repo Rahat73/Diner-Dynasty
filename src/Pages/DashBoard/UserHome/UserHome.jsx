@@ -27,7 +27,9 @@ const UserHome = () => {
     queryKey: ["reviews", user?.email],
     enabled: user != null,
     queryFn: async () => {
-      const res = await axios(`http://localhost:5000/reviews/${user?.email}`);
+      const res = await axios(
+        `https://diner-dynasty-server.vercel.app/reviews/${user?.email}`
+      );
       return res.data;
     },
   });
@@ -79,7 +81,9 @@ const UserHome = () => {
               <FaDollarSign className="text-5xl" />
               <div>
                 <div className="stat-title">Spendings</div>
-                <div className="stat-value">{totalSpent}</div>
+                <div className="stat-value">
+                  {parseFloat(totalSpent).toFixed(2)}
+                </div>
               </div>
             </div>
 

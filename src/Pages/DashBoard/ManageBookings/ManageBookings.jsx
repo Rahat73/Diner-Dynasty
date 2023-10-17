@@ -82,12 +82,14 @@ const ManageBookings = () => {
                         {item.status === "confirmed" ? "Confirmed" : "Pending"}
                       </td>
                       <td>
-                        <button
-                          onClick={() => handleConfirmBooking(item._id)}
-                          className="btn btn-ghost btn-xs"
-                        >
-                          <FaCheckCircle className="text-2xl text-amber-500" />
-                        </button>
+                        {item.status !== "confirmed" && (
+                          <button
+                            onClick={() => handleConfirmBooking(item._id)}
+                            className="btn btn-ghost btn-xs"
+                          >
+                            <FaCheckCircle className="text-2xl text-amber-500" />
+                          </button>
+                        )}
                       </td>
                     </tr>
                   ))}

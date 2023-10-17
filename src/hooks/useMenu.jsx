@@ -4,7 +4,7 @@ const useMenu = () => {
   // const [menu, setMenu] = useState([]);
   // const [loading, setLoading] = useState(true);
   // useEffect(() => {
-  //   fetch("http://localhost:5000/menus")
+  //   fetch("https://diner-dynasty-server.vercel.app/menus")
   //     .then((res) => res.json())
   //     .then((data) => {
   //       setMenu(data);
@@ -19,7 +19,7 @@ const useMenu = () => {
   } = useQuery({
     queryKey: ["menu"],
     queryFn: async () => {
-      const res = await fetch("http://localhost:5000/menus");
+      const res = await fetch("https://diner-dynasty-server.vercel.app/menus");
       return await res.json();
     },
   });

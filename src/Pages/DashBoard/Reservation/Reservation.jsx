@@ -24,7 +24,7 @@ const Reservation = () => {
     enabled: selectedDate !== "" && selectedGuests !== "",
     queryFn: async () => {
       const res = await axios(
-        `http://localhost:5000/booking-options?date=${selectedDate}&guests=${selectedGuests}`
+        `https://diner-dynasty-server.vercel.app/booking-options?date=${selectedDate}&guests=${selectedGuests}`
       );
       return res.data;
     },
