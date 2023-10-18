@@ -1,5 +1,7 @@
 ## Live Link [https://diner-dynasty.web.app/]
 
+- Admin email: admin@mail.com, password: Admin@123
+
 ## Server github link [https://github.com/Rahat73/Diner-Dynasty-server]
 
 ## Functionalities
@@ -8,19 +10,19 @@
 - User: can add/remove food to/from cart, make payment, make/remove reservation, see payment history, see user stats, add review.
 - Admin: can add/update/delete food, manage users, manage reservations, see company stats
 
-## Technologies Used
+# Technologies Used
 
-# Front-end
+## Front-end
 
 - React.js, React-Router-DOM, Tailwind css, Vite, DaisyUI, HyperUI
 - Framer-Motion, Axios, React-Query, React-Hook-Form, SwiperJS, React-Icons, Recharts, React-Paginate, React-Tabs, React-Parallax, Lottie-React, React-Toastify, Sweet-Alert-2, DateFNS, React-Simple-Captcha
 
-# Back-end
+## Back-end
 
 - Node.js, Express.js, MongoDB
 - JWT, CORS, dotENV, Stripe, Nodemailer, Mailgun,
 
-# Authentication
+## Authentication
 
 - Firebase
 
