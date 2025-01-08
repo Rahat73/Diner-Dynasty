@@ -2,7 +2,7 @@ import { useContext } from "react";
 import Button from "./Button";
 import { AuthContext } from "../Providers/AuthProvider";
 import { toast } from "react-toastify";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useCart from "../hooks/useCart";
 
@@ -71,11 +71,14 @@ const MenuItemCard = ({ item }) => {
             <h3 className="mt-4 text-xl font-medium sm:text-2xl">{name}</h3>
             <p className="mt-4 text-sm sm:text-base">{recipe}</p>
             <p className="mt-4 sm:text-xl text-amber-500 font-bold">${price}</p>
-            <button onClick={() => handleItem(item)}>
-              <Button onclick className={"mt-4"}>
-                Add to cart
-              </Button>
-            </button>
+            <div className="flex justify-evenly items-center mt-4">
+              <button>
+                <Link to={`/menu/${_id}`}>View Details</Link>
+              </button>
+              <button onClick={() => handleItem(item)}>
+                <Button onclick>Add to cart</Button>
+              </button>
+            </div>
           </div>
         </div>
       </div>

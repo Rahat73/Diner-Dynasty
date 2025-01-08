@@ -22,6 +22,7 @@ import PaymentHistory from "../Pages/DashBoard/PaymentHistory/PaymentHistory";
 import AddReview from "../Pages/DashBoard/AddReview/AddReview";
 import ManageBookings from "../Pages/DashBoard/ManageBookings/ManageBookings";
 import MyCart from "../Pages/DashBoard/MyCart/MyCart";
+import MenuDetails from "../Pages/Menu/MenuDetails/MenuDetails";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "menu",
         element: <Menu></Menu>,
+      },
+      {
+        path: "menu/:id",
+        element: <MenuDetails />,
       },
       {
         path: "order/:category",

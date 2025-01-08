@@ -3,7 +3,7 @@ import banner from "../../../assets/DescriptionBanner/chef-service.jpg";
 const DescriptionBanner = () => {
   return (
     <div
-      className="hero w-9/12 mx-auto my-40 bg-fixed"
+      className="hero w-11/12 mx-auto my-40 bg-fixed"
       style={{
         backgroundImage: `url(${banner})`,
       }}
@@ -13,11 +13,12 @@ const DescriptionBanner = () => {
         <div className="bg-base-200 p-5 md:p-16 md:m-16">
           <h1 className="mb-5 text-5xl font-bold">Diner Dynasty</h1>
           <p className="mb-5">
-            Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi. Provident cupiditate voluptatem et in. Quaerat fugiat ut
-            assumenda excepturi exercitationem quasi. In deleniti eaque aut
-            repudiandae et a id nisi.
+            Diner Dynasty is a restaurant that serves a variety of cuisines,
+            including Italian, Chinese, Mexican, and American food. We offer a
+            wide range of dishes, from classic favorites like pasta and pizza,
+            to more exotic options like seafood and steak. Our menu is designed
+            to be diverse and inclusive, so that everyone can find something
+            they enjoy.
           </p>
         </div>
       </div>

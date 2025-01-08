@@ -12,7 +12,7 @@ import SectionHeader from "../../../Components/SectionHeader";
 
 const CategorySlider = () => {
   return (
-    <div className="w-9/12 mx-auto my-40">
+    <div className="w-11/12 mx-auto my-40">
       <SectionHeader
         subHeading={"From 11:00am to 10:00pm"}
         heading={"Order Online"}
@@ -34,11 +34,11 @@ const CategorySlider = () => {
               spaceBetween: 20,
             },
             "@1.00": {
-              slidesPerView: 3,
+              slidesPerView: 4,
               spaceBetween: 40,
             },
             "@1.50": {
-              slidesPerView: 4,
+              slidesPerView: 5,
               spaceBetween: 50,
             },
           }}
