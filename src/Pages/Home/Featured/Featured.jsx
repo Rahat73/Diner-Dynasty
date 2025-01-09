@@ -6,7 +6,7 @@ import "./Featured.css";
 
 const Featured = () => {
   return (
-    <div className="featured-container my-40 text-neutral-content">
+    <div className="featured-container my-24 text-neutral-content">
       <div className="bg-black bg-opacity-80 w-full h-full px-20 py-28">
         <SectionHeader
           heading={"Make Reservation"}
@@ -25,9 +25,9 @@ const Featured = () => {
               inviting atmosphere, and our staff is friendly and attentive. So
               come on down and give us a try. We know you&apos;ll enjoy it!
             </p>
-            <Button className={"my-4"}>
-              <Link to="/dashBoard/reservation">Reserve</Link>
-            </Button>
+            <Link to="/dashBoard/reservation">
+              <Button className={"my-4"}>Reserve</Button>
+            </Link>
           </div>
         </div>
       </div>

@@ -30,6 +30,10 @@ const Banner = () => {
   return (
     <div>
       <Swiper
+        style={{
+          "--swiper-navigation-color": "#fff",
+          "--swiper-pagination-color": "#fff",
+        }}
         // spaceBetween={30}
         centeredSlides={true}
         effect={"creative"}
