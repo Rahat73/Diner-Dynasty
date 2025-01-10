@@ -12,12 +12,10 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "./Banner.css";
 
-import img1 from "../../../assets/Banner/01.jpg";
-import img2 from "../../../assets/Banner/02.jpg";
-import img3 from "../../../assets/Banner/03.jpg";
-import img4 from "../../../assets/Banner/04.jpg";
-import img5 from "../../../assets/Banner/05.jpg";
-import img6 from "../../../assets/Banner/06.jpg";
+import orderbg from "../../../assets/shop/banner2.jpg";
+import reservationbg from "../../../assets/menu/banner3.jpg";
+import Button from "../../../Components/Button";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const progressCircle = useRef(null);
@@ -31,8 +29,8 @@ const Banner = () => {
     <div>
       <Swiper
         style={{
-          "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
+          "--swiper-navigation-color": "red",
+          "--swiper-pagination-color": "red",
         }}
         // spaceBetween={30}
         centeredSlides={true}
@@ -59,9 +57,44 @@ const Banner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src={img1} alt="" />
+          <div className="relative h-[30rem] w-full">
+            <img src={orderbg} className="h-full w-full object-cover" alt="" />
+            <div className="absolute inset-0 text-amber-400 bg-black bg-opacity-60 backdrop-blur-sm flex flex-col items-center justify-center text-center  px-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                Order Your Favourite Food
+              </h1>
+              <p className="text-lg md:text-xl mb-6 font-semibold">
+                Delicious meals delivered to your doorstep in minutes. Explore
+                our wide range of cuisines.
+              </p>
+              <Link to="/order/salad">
+                <Button>Order Now</Button>
+              </Link>
+            </div>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
+          <div className="relative h-[30rem] w-full">
+            <img
+              src={reservationbg}
+              className="h-full w-full object-cover"
+              alt=""
+            />
+            <div className="absolute inset-0 text-amber-400 bg-black bg-opacity-60 backdrop-blur-sm flex flex-col items-center justify-center text-center  px-4">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+                Reserve Your Table
+              </h1>
+              <p className="text-lg md:text-xl mb-6 font-semibold">
+                Reserve your table for a delightful dining experience. Choose
+                from a wide selection of cuisines and enjoy a memorable meal.
+              </p>
+              <Link to="/dashBoard/reservation">
+                <Button>Reserve Now</Button>
+              </Link>
+            </div>
+          </div>
+        </SwiperSlide>
+        {/* <SwiperSlide>
           <img src={img2} alt="" />
         </SwiperSlide>
         <SwiperSlide>
@@ -75,7 +108,7 @@ const Banner = () => {
         </SwiperSlide>
         <SwiperSlide>
           <img src={img6} alt="" />
-        </SwiperSlide>
+        </SwiperSlide> */}
         <div className="autoplay-progress" slot="container-end">
           <svg viewBox="0 0 48 48" ref={progressCircle}>
             <circle cx="24" cy="24" r="20"></circle>

@@ -89,6 +89,8 @@ const CheckoutForm = ({ price, cart }) => {
         menuItems: cart.map((item) => item.menuItemId),
         itemNames: cart.map((item) => item.name),
         status: "pending",
+        phone: event.target.phone.value,
+        address: event.target.address.value,
       };
 
       axiosSecure.post("/payments", paymentInfo).then((res) => {
@@ -124,6 +126,30 @@ const CheckoutForm = ({ price, cart }) => {
           },
         }}
       />
+      <div className="form-control max-w-md">
+        <label className="label">
+          <span className="label-text">Phone Number*</span>
+        </label>
+        <input
+          type="tel"
+          name="phone"
+          placeholder="0123456789"
+          className="input input-bordered w-full"
+          required
+        />
+      </div>
+      <div className="form-control max-w-md">
+        <label className="label">
+          <span className="label-text">Address*</span>
+        </label>
+        <input
+          name="address"
+          type="text"
+          placeholder="House, Road, Area, City"
+          className="input input-bordered w-full"
+          required
+        />
+      </div>
       <motion.button
         animate={{ scale: [1.05, 1, 1.05] }}
         transition={{ repeat: Infinity }}

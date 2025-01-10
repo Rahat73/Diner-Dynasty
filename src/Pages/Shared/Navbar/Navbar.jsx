@@ -73,10 +73,10 @@ const Navbar = () => {
         <ActiveLink to={"/"}>Home</ActiveLink>
       </li>
       <li>
-        <ActiveLink to={"/menu"}>Our Menu</ActiveLink>
+        <ActiveLink to={"/order/salad"}>Order Now</ActiveLink>
       </li>
       <li>
-        <ActiveLink to={"/order/salad"}>Order</ActiveLink>
+        <ActiveLink to={"/menu"}>Our Menu</ActiveLink>
       </li>
       <li>
         <ActiveLink to={"/contactUs"}>Contact Us</ActiveLink>
@@ -114,7 +114,7 @@ const Navbar = () => {
 
   return (
     <div
-      className={`navbar bg-red-700 sticky top-0 z-10 font-semibold text-neutral-content ${
+      className={`navbar bg-red-700 pl-10 pr-14 sticky top-0 z-10 font-semibold text-neutral-content ${
         navbarChange &&
         `bg-red-950 bg-opacity-70 bg-clip-padding backdrop-filter backdrop-blur-sm`
       } ${navbarHide && `opacity-0`}`}
@@ -176,21 +176,36 @@ const Navbar = () => {
               </div>
             </Link>
             <div
-              className="tooltip tooltip-bottom ml-4 flex"
+              className="tooltip tooltip-left ml-4 flex"
               data-tip={user.displayName}
             >
-              <div className="avatar">
-                <div className="w-10 rounded-full">
-                  <img src={user.photoURL} />
+              <div className="dropdown dropdown-bottom dropdown-end">
+                <div tabIndex={0} role="button" className="avatar">
+                  <div className="w-10 rounded-full">
+                    <img src={user.photoURL} />
+                  </div>
                 </div>
+                <ul
+                  tabIndex={0}
+                  className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
+                >
+                  <li>
+                    <ActiveLink
+                      to={
+                        isAdmin ? "/dashBoard/adminHome" : "/dashBoard/userHome"
+                      }
+                    >
+                      Dashboard
+                    </ActiveLink>
+                  </li>
+                  <li>
+                    <button onClick={handleLogOut} className="hidden md:block">
+                      Log Out
+                    </button>
+                  </li>
+                </ul>
               </div>
             </div>
-            <button
-              onClick={handleLogOut}
-              className="btn btn-ghost mx-1 hidden md:block"
-            >
-              Log Out
-            </button>
           </>
         ) : (
           <Link to={"/login"}>

@@ -49,9 +49,7 @@ const Order = () => {
         <Cover
           img={orderImg}
           heading={"Order Food"}
-          subHeading={
-            "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Neque explicabo mollitia eos accusantium, eveniet nisi sunt ab. Sequi, quidem a!"
-          }
+          subHeading={"Would You Like To Try A Dish? We've Got You Covered!"}
         ></Cover>
         <div className="w-9/12 mx-auto my-10">
           <Tabs

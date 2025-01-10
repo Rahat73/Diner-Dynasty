@@ -53,7 +53,7 @@ const ContactUs = () => {
         <Cover
           heading={"Contact Us"}
           subHeading={
-            "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Fugiat et sit placeat soluta voluptatem, aut impedit eos quo error nobis!"
+            "If You Have Any Questions, Please Don't Hesitate To Contact Us"
           }
           img={contactImg}
         ></Cover>

@@ -53,7 +53,7 @@ const Menu = () => {
             items={salad}
             heading={"Salads"}
             subHeading={
-              "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos tenetur vel ea ullam cupiditate eum earum eius incidunt ratione repellat. Earum, laboriosam corporis sequi laborum consequatur eveniet in quos omnis."
+              "Fresh, locally-sourced ingredients, expertly prepared to bring out the best flavors"
             }
             img={saladImg}
             category={"salad"}
@@ -65,7 +65,7 @@ const Menu = () => {
             items={soup}
             heading={"Soups"}
             subHeading={
-              "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos tenetur vel ea ullam cupiditate eum earum eius incidunt ratione repellat. Earum, laboriosam corporis sequi laborum consequatur eveniet in quos omnis."
+              "Our soups are made with love and care, using only the freshest ingredients. From classic favorites to unique twists, we have a soup to warm your heart and belly."
             }
             img={soupImg}
             category={"soup"}
@@ -77,7 +77,7 @@ const Menu = () => {
             items={pizza}
             heading={"Pizza"}
             subHeading={
-              "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos tenetur vel ea ullam cupiditate eum earum eius incidunt ratione repellat. Earum, laboriosam corporis sequi laborum consequatur eveniet in quos omnis."
+              "Indulge in our delicious pizzas, crafted with the finest ingredients and baked to perfection. From classic Margherita to gourmet options, there's a slice for everyone to enjoy."
             }
             img={pizzaImg}
             category={"pizza"}
@@ -89,7 +89,7 @@ const Menu = () => {
             items={dessert}
             heading={"Desserts"}
             subHeading={
-              "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eos tenetur vel ea ullam cupiditate eum earum eius incidunt ratione repellat. Earum, laboriosam corporis sequi laborum consequatur eveniet in quos omnis."
+              "Delicious desserts made with love and care, using only the freshest ingredients. From classic favorites to unique twists, we have a dessert to warm your heart and belly."
             }
             img={dessertImg}
             category={"desserts"}
