@@ -9,8 +9,11 @@ import slide3 from "../../../assets/CategorySlider/slide3.jpg";
 import slide4 from "../../../assets/CategorySlider/slide4.jpg";
 import slide5 from "../../../assets/CategorySlider/slide5.jpg";
 import SectionHeader from "../../../Components/SectionHeader";
+import { useNavigate } from "react-router-dom";
 
 const CategorySlider = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-11/12 mx-auto my-24">
       <SectionHeader
@@ -46,7 +49,10 @@ const CategorySlider = () => {
           className="mySwiper"
         >
           <SwiperSlide>
-            <div className="relative">
+            <div
+              className="cursor-pointer relative"
+              onClick={() => navigate("/order/salad")}
+            >
               <img className="w-full" src={slide1} alt="" />
               <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
                 Salads
@@ -54,7 +60,10 @@ const CategorySlider = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="relative">
+            <div
+              className="cursor-pointer relative"
+              onClick={() => navigate("/order/pizza")}
+            >
               <img className="w-full" src={slide2} alt="" />
               <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
                 Pizzas
@@ -62,15 +71,23 @@ const CategorySlider = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="relative">
-              <img className="w-full" src={slide3} alt="" />
+            <div className="cursor-pointer relative">
+              <img
+                className="w-full"
+                src={slide3}
+                alt=""
+                onClick={() => navigate("/order/soup")}
+              />
               <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
                 Soups
               </h1>
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="relative">
+            <div
+              className="cursor-pointer relative"
+              onClick={() => navigate("/order/desert")}
+            >
               <img className="w-full" src={slide4} alt="" />
               <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
                 Deserts
@@ -78,7 +95,10 @@ const CategorySlider = () => {
             </div>
           </SwiperSlide>
           <SwiperSlide>
-            <div className="relative">
+            <div
+              className="cursor-pointer relative"
+              onClick={() => navigate("/order/salad")}
+            >
               <img className="w-full" src={slide5} alt="" />
               <h1 className="text-3xl text-neutral-content text-center absolute inset-x-0 bottom-0 bg-red-800 bg-opacity-50 bg-clip-padding backdrop-filter backdrop-blur-sm">
                 Salads

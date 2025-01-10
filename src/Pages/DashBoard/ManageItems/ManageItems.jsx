@@ -92,7 +92,7 @@ const ManageItems = () => {
                         <div className="flex items-center space-x-3">
                           <div className="avatar">
                             <div className="mask mask-squircle w-12 h-12">
-                              <img src={item.image} alt="Food" />
+                              <img src={item.images?.[0]} alt="Food" />
                             </div>
                           </div>
                         </div>

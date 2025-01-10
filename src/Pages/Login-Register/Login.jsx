@@ -1,6 +1,6 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { BiSolidDish } from "react-icons/bi";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { toast } from "react-toastify";
@@ -8,7 +8,20 @@ import Input from "../../Components/Input";
 import loginImg from "../../assets/Login-Register/image-5.jpg";
 import SocialLogin from "../Shared/SocialLogin/SocialLogin";
 
+const credentials = {
+  admin: {
+    email: "admin@mail.com",
+    password: "Admin@123",
+  },
+  user: {
+    email: "user@mail.com",
+    password: "User@123",
+  },
+};
+
 const Login = () => {
+  const [userCredential, setUserCredential] = useState();
+
   const { signIn } = useContext(AuthContext);
 
   const location = useLocation();
@@ -91,19 +104,41 @@ const Login = () => {
                 </p>
               </div>
 
+              <h2 className="text-2xl md:text-3xl font-bold col-span-6">
+                Login
+              </h2>
+              <div className="my-4 space-x-2">
+                <button
+                  className="rounded-full px-3 bg-blue-600 text-white"
+                  onClick={() => setUserCredential(credentials.user)}
+                >
+                  user
+                </button>
+                <button
+                  className="rounded-full px-2 bg-green-600 text-white"
+                  onClick={() => setUserCredential(credentials.admin)}
+                >
+                  admin
+                </button>
+              </div>
               <form
                 onSubmit={handleLogin}
                 className="mt-8 grid grid-cols-6 gap-6"
               >
-                <h2 className="text-2xl md:text-3xl font-bold col-span-6">
-                  Login
-                </h2>
                 <div className="col-span-6 ">
-                  <Input name={"Email"} type={"email"}></Input>
+                  <Input
+                    name={"Email"}
+                    type={"email"}
+                    defaultValue={userCredential?.email}
+                  ></Input>
                 </div>
 
                 <div className="col-span-6 ">
-                  <Input name={"Password"} type={"password"}></Input>
+                  <Input
+                    name={"Password"}
+                    type={"password"}
+                    defaultValue={userCredential?.password}
+                  ></Input>
                 </div>
 
                 <div className="col-span-6 sm:flex sm:items-center sm:gap-4">

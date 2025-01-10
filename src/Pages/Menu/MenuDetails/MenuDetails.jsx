@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -17,6 +17,10 @@ import useCart from "../../../hooks/useCart";
 import useMenu from "../../../hooks/useMenu";
 
 const MenuDetails = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const { id } = useParams();
   const [menu] = useMenuDetails({ id });
 
@@ -88,13 +92,11 @@ const MenuDetails = () => {
             thumbs={{ swiper: thumbsSwiper }}
             modules={[FreeMode, Navigation, Thumbs]}
           >
-            <SwiperSlide>
-              <img
-                src={menu?.image}
-                alt={menu?.name}
-                className="w-full object-cover"
-              />
-            </SwiperSlide>
+            {menu?.images.map((image) => (
+              <SwiperSlide key={image}>
+                <img src={image} className="w-full object-cover" />
+              </SwiperSlide>
+            ))}
           </Swiper>
 
           {/* Thumbnail Swiper */}
@@ -107,9 +109,11 @@ const MenuDetails = () => {
             modules={[FreeMode, Navigation, Thumbs]}
             className="mySwiper mt-4"
           >
-            <SwiperSlide>
-              <img src={menu?.image} alt={menu?.name} className="w-full" />
-            </SwiperSlide>
+            {menu?.images.map((image) => (
+              <SwiperSlide key={image}>
+                <img src={image} className="w-full" />
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
 

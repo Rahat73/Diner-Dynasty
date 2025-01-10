@@ -28,18 +28,18 @@ const EditItem = ({ item }) => {
       category: item.category,
       price: item.price,
       recipe: item.recipe,
-      image: item.image,
+      images: item.images,
     });
   }, [item, reset]);
 
   const onSubmit = (data) => {
-    const { name, category, price, recipe, image } = data;
+    const { name, category, price, recipe, images } = data;
     const updatedItem = {
       name,
       category,
       price: parseFloat(price),
       recipe,
-      image,
+      images,
     };
     axiosSecure.patch(`/menus/${item._id}`, updatedItem).then((res) => {
       if (res.data.modifiedCount > 0) {
@@ -146,6 +146,7 @@ const EditItem = ({ item }) => {
             <div className="form-control w-full col-span-12">
               <label className="label">
                 <span className="label-text">ImageURL*</span>
+                <span className="label-text text-xs">comma separated</span>
               </label>
               <input
                 type="url"
@@ -153,7 +154,7 @@ const EditItem = ({ item }) => {
                 className="input input-bordered w-full"
                 // defaultValue={item.image}
                 required
-                {...register("image")}
+                {...register("images")}
               />
             </div>
             <input

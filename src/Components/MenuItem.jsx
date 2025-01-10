@@ -7,7 +7,7 @@ import { AuthContext } from "../Providers/AuthProvider";
 import useCart from "../hooks/useCart";
 
 const MenuItem = ({ item }) => {
-  const { _id, name, recipe, image, price } = item;
+  const { _id, name, recipe, images, price } = item;
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,7 +18,7 @@ const MenuItem = ({ item }) => {
       const cartItem = {
         menuItemId: _id,
         name,
-        image,
+        image: images[0],
         price,
         userEmail: user.email,
       };
@@ -65,7 +65,7 @@ const MenuItem = ({ item }) => {
           <div className="p-4 px-10 w-full flex-col sm:flex-row lg:flex justify-between items-center transition-opacity group-hover:absolute group-hover:opacity-0 ">
             <img
               className="w-28 sm:w-40 lg:w-44 rounded-e-full rounded-b-full "
-              src={image}
+              src={images?.[0]}
               alt=""
             />
             <h2 className="mx-4 text-end text-xl font-medium sm:text-2xl">

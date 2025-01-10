@@ -7,7 +7,7 @@ import Swal from "sweetalert2";
 import useCart from "../hooks/useCart";
 
 const MenuItemCard = ({ item }) => {
-  const { _id, name, recipe, image, price } = item;
+  const { _id, name, recipe, images, price } = item;
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -18,7 +18,7 @@ const MenuItemCard = ({ item }) => {
       const cartItem = {
         menuItemId: _id,
         name,
-        image,
+        image: images?.[0],
         price,
         userEmail: user.email,
       };
@@ -63,7 +63,7 @@ const MenuItemCard = ({ item }) => {
 
         <div className="relative flex h-full transform items-end border-2 border-current bg-base-200 transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2">
           <div className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
-            <img src={image} alt="" />
+            <img src={images?.[0]} alt="" />
             <h2 className="mt-4 text-xl font-medium sm:text-2xl">{name}</h2>
           </div>
 

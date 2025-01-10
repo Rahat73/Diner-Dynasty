@@ -8,10 +8,14 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { dashboardVariants } from "../DashboardVariants/DashboardVariants";
+import { useState } from "react";
 
 const img_hosting_token = import.meta.env.VITE_Image_Upload_Token;
 
 const AddItem = () => {
+  const [imageFiles, setImageFiles] = useState([]);
+  const [imagePreviews, setImagePreviews] = useState([]);
+
   const [axiosSecure] = useAxiosSecure();
 
   const img_hosting_url = `https://api.imgbb.com/1/upload?key=${img_hosting_token}`;
@@ -22,8 +26,10 @@ const AddItem = () => {
     reset,
   } = useForm();
 
-  const onSubmit = (data) => {
-    if (data.image[0].size > 1048576) {
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+
+    if (file.size > 1048576) {
       return Swal.fire({
         icon: "error",
         title: "Oops...",
@@ -31,31 +37,73 @@ const AddItem = () => {
         footer: "Make sure image size is below 1MB",
       });
     }
-    const formData = new FormData();
-    formData.append("image", data.image[0]);
-    fetch(img_hosting_url, {
-      method: "POST",
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((imgRes) => {
-        if (imgRes.success) {
-          const imgURL = imgRes.data.display_url;
-          const { name, category, price, recipe } = data;
-          const newItem = {
-            name,
-            category,
-            price: parseFloat(price),
-            recipe,
-            image: imgURL,
-          };
-          axiosSecure.post("/menus", newItem).then((res) => {
-            if (res.data.insertedId) {
-              reset();
-              toast.success("A new item has been added");
-            }
+
+    setImageFiles((prev) => [...prev, file]);
+
+    if (file) {
+      const reader = new FileReader();
+
+      reader.onloadend = () => {
+        setImagePreviews((prev) => [...prev, reader.result]);
+      };
+
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const onSubmit = (data) => {
+    const uploadPromises = imageFiles.map(async (file) => {
+      const formData = new FormData();
+      formData.append("image", file);
+
+      return await fetch(img_hosting_url, {
+        method: "POST",
+        body: formData,
+      }).then((res) => res.json());
+    });
+
+    console.log(uploadPromises);
+
+    Promise.all(uploadPromises)
+      .then((responses) => {
+        const uploadedImages = responses
+          .filter((res) => res.success)
+          .map((res) => res.data.display_url);
+
+        if (uploadedImages.length === 0) {
+          return Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Image upload failed!",
           });
         }
+
+        const { name, category, price, recipe } = data;
+        const newItem = {
+          name,
+          category,
+          price: parseFloat(price),
+          recipe,
+          images: uploadedImages, // Store array of image URLs
+        };
+
+        // Submit the new item with the image URLs to the server
+        axiosSecure.post("/menus", newItem).then((res) => {
+          if (res.data.insertedId) {
+            reset();
+            setImageFiles([]); // Clear selected images
+            setImagePreviews([]); // Clear previews
+            toast.success("A new item has been added");
+          }
+        });
+      })
+      .catch((error) => {
+        console.error("Image upload failed", error);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong while uploading images!",
+        });
       });
   };
 
@@ -68,7 +116,7 @@ const AddItem = () => {
         variants={dashboardVariants}
         initial="hidden"
         animate="visible"
-        className="w-full"
+        className="w-full my-5"
       >
         <SectionHeader
           heading={"Add an Item"}
@@ -152,7 +200,7 @@ const AddItem = () => {
                 {...register("recipe", { maxLength: 150 })}
               ></textarea>
             </div>
-            <div className="form-control w-full col-span-6">
+            {/* <div className="form-control w-full col-span-6">
               <label className="label">
                 <span className="label-text">Item Image</span>
               </label>
@@ -162,6 +210,39 @@ const AddItem = () => {
                 required
                 {...register("image")}
               />
+            </div> */}
+            <div className="col-span-12">
+              <label
+                className="flex h-14 w-40 cursor-pointer items-center justify-center rounded-xl border-2 text-default-500 shadow-sm transition-all duration-100 hover:border-default-400"
+                htmlFor="image"
+              >
+                Upload image
+              </label>
+              <input
+                multiple
+                className="hidden"
+                id="image"
+                type="file"
+                onChange={(e) => handleImageChange(e)}
+              />
+            </div>
+            <div className="col-span-12">
+              {imagePreviews.length > 0 && (
+                <div className="flex space-x-2 mb-5">
+                  {imagePreviews.map((imageDataUrl) => (
+                    <div
+                      key={imageDataUrl}
+                      className="w-40 h-40 rounded-xl border-2 border-dashed border-default-300 p-2"
+                    >
+                      <img
+                        alt="item"
+                        className="w-[8.6rem] h-[8.6rem] object-cover"
+                        src={imageDataUrl}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
             <div className="col-span-12 flex justify-center">
               <button>
