@@ -62,8 +62,8 @@ const MenuItemCard = ({ item }) => {
         <span className="absolute inset-0 border-2 border-dashed border-black"></span>
 
         <div className="relative flex h-full transform items-end border-2 border-current bg-base-200 transition-transform group-hover:-translate-x-2 group-hover:-translate-y-2">
-          <div className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8">
-            <img src={images?.[0]} alt="" />
+          <div className="p-4 !pt-0 transition-opacity group-hover:absolute group-hover:opacity-0 sm:p-6 lg:p-8 mx-auto">
+            <img src={images?.[0]} alt="" className="h-52 w-full md:h-auto" />
             <h2 className="mt-4 text-xl font-medium sm:text-2xl">{name}</h2>
           </div>
 

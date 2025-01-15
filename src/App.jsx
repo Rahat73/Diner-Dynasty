@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-      <div className="max-w-screen-2xl mx-auto">
+      <div className="mx-auto">
         <Welcome showWelcome={showWelcome}></Welcome>
         <ToastContainer
           position="top-right"

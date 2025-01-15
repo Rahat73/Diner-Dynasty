@@ -86,8 +86,6 @@ const AdminHome = () => {
     },
   });
 
-  console.log(chartData);
-
   return (
     <>
       <Helmet>

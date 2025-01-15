@@ -1,21 +1,19 @@
 import { useRef } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
 import {
   Autoplay,
   EffectCreative,
   Navigation,
   Pagination,
 } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 import "./Banner.css";
 
-import orderbg from "../../../assets/shop/banner2.jpg";
-import reservationbg from "../../../assets/menu/banner3.jpg";
-import Button from "../../../Components/Button";
-import { Link } from "react-router-dom";
+import FirstBanner from "./FirstBanner";
+import SecondBanner from "./SecondBanner";
 
 const Banner = () => {
   const progressCircle = useRef(null);
@@ -57,7 +55,7 @@ const Banner = () => {
         className="mySwiper"
       >
         <SwiperSlide>
-          <div className="relative h-[30rem] w-full">
+          {/* <div className="relative h-[30rem] w-full">
             <img src={orderbg} className="h-full w-full object-cover" alt="" />
             <div className="absolute inset-0 text-amber-400 bg-black bg-opacity-60 backdrop-blur-sm flex flex-col items-center justify-center text-center  px-4">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
@@ -71,10 +69,12 @@ const Banner = () => {
                 <Button>Order Now</Button>
               </Link>
             </div>
-          </div>
+          </div> */}
+          <FirstBanner />
         </SwiperSlide>
         <SwiperSlide>
-          <div className="relative h-[30rem] w-full">
+          <SecondBanner />
+          {/* <div className="relative h-[30rem] w-full">
             <img
               src={reservationbg}
               className="h-full w-full object-cover"
@@ -92,7 +92,7 @@ const Banner = () => {
                 <Button>Reserve Now</Button>
               </Link>
             </div>
-          </div>
+          </div> */}
         </SwiperSlide>
         {/* <SwiperSlide>
           <img src={img2} alt="" />

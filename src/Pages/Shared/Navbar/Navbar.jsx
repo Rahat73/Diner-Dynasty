@@ -75,9 +75,9 @@ const Navbar = () => {
       <li>
         <ActiveLink to={"/order/salad"}>Order Now</ActiveLink>
       </li>
-      <li>
+      {/* <li>
         <ActiveLink to={"/menu"}>Our Menu</ActiveLink>
-      </li>
+      </li> */}
       <li>
         <ActiveLink to={"/contactUs"}>Contact Us</ActiveLink>
       </li>

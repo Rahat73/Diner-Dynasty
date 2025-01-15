@@ -42,13 +42,13 @@ const Home = () => {
         >
           <CategorySlider></CategorySlider>
         </motion.div>
-        <motion.div
+        {/* <motion.div
           variants={homeComponentsVariants}
           initial="hidden"
           whileInView="visible"
         >
           <PopularMenu></PopularMenu>
-        </motion.div>
+        </motion.div> */}
         {/* <motion.div
           variants={homeComponentsVariants}
           initial="hidden"
